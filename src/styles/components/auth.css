@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;600&display=swap');
+
+.auth_container {
+	width: 100%;
+	height: auto;
+}
+
+.auth_navbar_container {
+	background-color: #161616ea;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	height: auto;
+}
+.auth_navbar_logo {
+	width: 200px;
+	height: 55px;
+	background-position: center;
+	background-size: contain;
+}
+.auth_main {
+	width: 100%;
+	background: rgb(126, 6, 128);
+	background: linear-gradient(
+		0deg,
+		rgba(126, 6, 128, 1) 0%,
+		rgba(249, 177, 74, 0.72) 100%
+	);
+	height: auto;
+	position: absolute;
+}
+
+.login_main_container {
+	position: relative;
+	background-color: #ffff;
+	width: 820px;
+	margin: 60px auto;
+	min-height: 570px;
+	height: auto;
+	border-radius: 15px;
+	display: flex;
+	flex-direction: row;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.login_left_side {
+	display: flex;
+	width: 400px;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 30px;
+	font-family: 'Roboto Mono', monospace;
+}
+.login_left_side img {
+	width: 100%;
+	margin: 20px auto;
+}
+.login_left_side span {
+	font-weight: bold;
+}
+
+.login_left_side button {
+	margin-top: 20px;
+	width: 180px;
+	height: 40px;
+	padding-bottom: 5px;
+	color: #ffff;
+	border-style: none;
+	font-weight: bolder;
+	border-radius: 20px;
+	background-color: #6c63ff;
+}
+
+.login_right_side {
+	flex: 1 1 0px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 30px;
+	font-family: 'Roboto Mono', monospace;
+}
+
+.form_login {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.form_login h1 {
+	margin: 0px auto;
+	display: block;
+	font-weight: bolder;
+	margin-bottom: 20px;
+}
+.form_login label {
+	margin-bottom: -5px;
+}
+
+.form_login p {
+	color: #000000;
+	font-size: 14px;
+}
+.form_login button {
+	margin: 0 auto;
+	margin-top: 20px;
+	padding-bottom: 5px;
+	width: 200px;
+	font-size: 1.2em;
+	height: 50px;
+	margin-bottom: 20px;
+	color: #ffff;
+	border-style: none;
+	font-weight: bolder;
+	border-radius: 40px;
+	background-color: #00bfa6;
+}
+
+.login_options {
+	display: flex;
+	flex-direction: row;
+	gap: 35px;
+}
+
+.login_options_checkbox input,
+p {
+	display: inline-block;
+	margin: 0px 2px;
+}
+
+.login_options .login_options_message > p {
+	color: #0047ff;
+	font-weight: bold;
+}
+
+.form_login .line_login {
+	border: 2px;
+	height: 0px;
+	margin-bottom: 20px;
+	border-bottom: 2px solid #c4c4c4;
+}
+
+/* Css Font*/
+input[type='text'],
+input[type='password'] {
+	width: 100%;
+	border: 1px solid #aaa;
+	border-radius: 4px;
+	margin: 8px 0;
+	outline: none;
+	padding: 8px;
+	box-sizing: border-box;
+	transition: 0.3s;
+}
+
+input[type='text']:focus,
+input[type='password']:focus {
+	border-color: dodgerBlue;
+	box-shadow: 0 0 8px 0 dodgerBlue;
+}
+
+.inputWithIcon input[type='text'],
+input[type='password'] {
+	padding-left: 40px;
+}
+
+.inputWithIcon {
+	position: relative;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.inputWithIcon i {
+	position: absolute;
+	left: 0;
+	top: 15px;
+	padding: 9px 8px;
+	color: #aaa;
+	transition: 0.3s;
+}
+
+.inputWithIcon.inputIconBg i {
+	background-color: #aaa;
+	color: #fff;
+	padding: 9px 4px;
+	border-radius: 4px 0 0 4px;
+}
+.auth_footer_container {
+	width: 100%;
+	text-align: center;
+	font-size: 1em;
+	color: #ffff;
+	font-family: 'Roboto Mono', monospace;
+}
+
+.login_with_container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	gap: 30px;
+}
+.login_with_container img {
+	width: 50px;
+	cursor: pointer;
+}
