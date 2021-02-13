@@ -2,106 +2,59 @@ import React from "react";
 import login_img from "../../assets/images/login_img.svg";
 import google_icon from "../../assets/images/google_icon.png";
 import facebook_icon from "../../assets/images/facebook_icon.png";
-import { Image } from "react-bootstrap";
+import { Image, Form, Col, Row, Button, FormCheck } from "react-bootstrap"; 
+import { Link } from "react-router-dom"
+
 export const Login = () => {
   return (
     <>
-      <div className="row m-0 d-flex align-items-center">
-        <div className="col-lg-4 d-none d-lg-block">
-          <div className="row">
-            <div className="col-lg-10">
-              <Image src={login_img} fluid />
-            </div>
-            <div className="col-lg-12 pt-4 text-center">
-              <span className="text_label ">¿Todavia no tienes cuenta?</span>
-            </div>
-            <div className="col-lg-12 text-center">
-              <button className="register_button">Registrarse</button>
-            </div>
+      <Row>
+        <Col md="6" className="d-flex responsiveLogin">
+          <div className="text-center pt-5">
+            <Image src={login_img} fluid className="mt-5" />
+              <span className="text_label ">¿Todavia no tienes cuenta?</span> <br />
+            <Link to="/auth/register">
+            <Button className="register_button">Registrarse</Button>
+            </Link>
           </div>
-        </div>
-        <div className="col-lg-8 border-left no-border">
-          <div className="row d-flex justify-content-center">
-            <div className="col-lg-9">
-              <form>
-                <h1 className="text_label text-center">SignIn</h1>
-                <label className="m-0 text_label">Correo:</label>
-                <div class="inputWithIcon">
-                  <input type="text" />
-                  <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
-                </div>
-                <label className="m-0 text_label">Contraseña:</label>
-                <div class="inputWithIcon">
-                  <input type="password" />
-                  <i class="fas fa-lock fa-lg fa-fw" aria-hidden="true"></i>
-                </div>
-                <div className="login_options">
-                  <div className="login_options_message">
+          <hr className="loginForm" />
+        </Col>
+        <Col sm="12" md="6">
+          <Form >
+            <h1 className="text_label text-center pt-3 pb-4">Iniciar sesión</h1>
+            <Form.Group className="inputWithIcon" >
+              <Form.Label className="text_label">Correo:</Form.Label>
+              <i className="fa fa-envelope fa-lg fa-fw" aria-hidden="true" />
+              <Form.Control type="text" />
+            </Form.Group>
+            <Form.Group className="inputWithIcon" >
+              <Form.Label className="text_label">Contraseña:</Form.Label>
+              <Form.Control  type="password" />
+              <i className="fas fa-lock fa-lg fa-fw" aria-hidden="true" />
+            </Form.Group>
+              <Row >
+                <Col xs="8" md="7" lg="8">
+                  <Link to="/auth/reset">
                     <p className="text_label">¿Olvidaste tu contraseña?</p>
-                  </div>
-                  <div className="login_options_checkbox">
-                    <input type="checkbox" name="" id="" />
-                    <p className="text_label">Recordarme</p>
-                  </div>
-                </div>
-                <div className="text-center my-3">
-                  <button className="login_button">Ingresar</button>
-                </div>
-                <div className="row d-block d-lg-none d-xl-none mb-3">
-                  <div className="col-lg-12 pt-2 text-center">
-                    <span className="text_label">
-                      ¿Todavia no tienes cuenta?
-                    </span>
-                  </div>
-                  <div className="col-lg-12 text-center">
-                    <button className="register_button">Registrarse</button>
-                  </div>
-                </div>
-                <div className="login_with_container border-top pt-4">
-                  <img src={facebook_icon} alt="" />
-                  <img src={google_icon} alt="" />
-                </div>
-              </form>
-            </div>
+                  </Link>
+                </Col>
+                <Col xs="4"  md="5"  lg="4">
+                    <FormCheck className="text_label" label="Recuerdame" />
+                </Col>
+              </Row>
+              <div className="text-center mt-5 mb-2">
+                  <Link to="/auth/register" >
+                    <Button className="alt_button hide_lg show_sm">Registrarse</Button>
+                  </Link>
+                  <Button className="login_button  ml-3">Ingresar</Button>
+              </div>
+          </Form>
+          <div className="login_with_container border-top pt-4 mb-3">
+            <img src={facebook_icon} alt="LogIn With Fb" />
+            <img src={google_icon} alt="LogIn with Gmail" />
           </div>
-        </div>
-      </div>
-      {/* <div className="login_left_side">
-        <img src={login_img} alt="login_img" />
-        <span>¿Todavia no tienes cuenta?</span>
-        <button>Registrarse</button>
-      </div>
-      <div className="login_right_side">
-        <form className="form_login">
-          <h1>SignIn</h1>
-          <label>Correo:</label>
-          <div class="inputWithIcon">
-            <input type="text" />
-            <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
-          </div>
-          <label>Contraseña:</label>
-          <div class="inputWithIcon">
-            <input type="password" />
-            <i class="fas fa-lock fa-lg fa-fw" aria-hidden="true"></i>
-          </div>
-
-          <div className="login_options">
-            <div className="login_options_message">
-              <p>¿Olvidaste tu contraseña?</p>
-            </div>
-            <div className="login_options_checkbox">
-              <input type="checkbox" name="" id="" />
-              <p>Recordarme</p>
-            </div>
-          </div>
-          <button>Ingresar</button>
-          <div className="line_login "></div>
-          <div className="login_with_container">
-            <img src={facebook_icon} alt="" />
-            <img src={google_icon} alt="" />
-          </div>
-        </form>
-      </div> */}
+        </Col>
+      </Row>
     </>
   );
 };

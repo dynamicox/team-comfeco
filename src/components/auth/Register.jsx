@@ -2,103 +2,68 @@ import React from "react";
 import register_img from "../../assets/images/register_img.svg";
 import google_icon from "../../assets/images/google_icon.png";
 import facebook_icon from "../../assets/images/facebook_icon.png";
-import { Image } from "react-bootstrap";
+import { Image, Form, Col, Row, Button, FormCheck } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
 export const Register = () => {
   return (
     <>
-      <div className="row m-0 d-flex align-items-center">
-        <div className="col-lg-4">
-          <div className="row d-none d-lg-block">
-            <div className="col-lg-10">
-              <Image src={register_img} fluid />
-            </div>
-            <div className="col-lg-12 pt-4 text-center">
-              <p className="text_label m-0">¿Ya estas registrado?</p>
-            </div>
-            <div className="col-lg-12 text-center">
-              <button className="register_button">Ingresar</button>
-            </div>
+      <Row>
+        <Col md="6" className="d-flex responsiveLogin">
+          <div className="text-center pt-5 mt-5">
+            <Image src={register_img} fluid className="pt-5 mt-5" />
+              <h5 className="text_label mt-3">¿Ya estas registrado?</h5>
+            <Link to="/auth/login">
+            <Button className="register_button">Ingresar</Button>
+            </Link>
           </div>
-        </div>
-        <div className="col-lg-8 col-xl-8 col-md-12 col-sm-12 col-12 border-left no-border">
-          <div className="row d-flex justify-content-center">
-            <div className="col-lg-9">
-              <form className="form_login">
-                <h1 className="text_label">SignUp</h1>
-                <label className="text_label">Nick:</label>
-                <div class="inputWithIcon">
-                  <input type="text" />
-                  <i class="fas fa-user fa-lg fa-fw" aria-hidden="true"></i>
-                </div>
-                <label className="text_label">Correo:</label>
-                <div class="inputWithIcon">
-                  <input type="text" />
-                  <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
-                </div>
-                <label className="text_label">Contraseña:</label>
-                <div class="inputWithIcon">
-                  <input type="password" />
-                  <i class="fas fa-lock fa-lg fa-fw" aria-hidden="true"></i>
-                </div>
-                <label className="text_label">Confirmar Contraseña:</label>
-                <div class="inputWithIcon">
-                  <input type="password" />
-                  <i class="fas fa-lock fa-lg fa-fw" aria-hidden="true"></i>
-                </div>
-                <button>Crear Cuenta</button>
-                <div className="row d-block d-lg-none d-xl-block">
-                  <div className="col-lg-12 pt-4 text-center mb-2">
-                    <p className="text_label m-0">¿Ya estas registrado?</p>
-                  </div>
-                  <div className="col-lg-12 text-center">
-                    <button className="register_button">Ingresar</button>
-                  </div>
-                </div>
-                <div className="login_with_container border-top pt-3 mt-2">
-                  <img src={facebook_icon} alt="" />
-                  <img src={google_icon} alt="" />
-                </div>
-              </form>
-            </div>
+          <hr className="loginForm" style={{height:'600px'}} />
+        </Col>
+        <Col sm="12" md="6">
+          <Form >
+            <h1 className="text_label text-center  pb-3">Registrate</h1>
+            {/* --------------USERNAME---------------- */}
+            <Form.Group className="inputWithIcon" >
+              <Form.Label className="text_label">Usuario:</Form.Label>
+              <i className="fas fa-user fa-lg fa-fw" aria-hidden="true" />
+              <Form.Control type="text" />
+            </Form.Group>
+            {/* --------------EMAIL---------------- */}
+            <Form.Group className="inputWithIcon" >
+              <Form.Label className="text_label">Correo:</Form.Label>
+              <i className="fa fa-envelope fa-lg fa-fw" aria-hidden="true" />
+              <Form.Control type="text" />
+            </Form.Group>
+            {/* --------------PASSWORD---------------- */}
+            <Form.Group className="inputWithIcon" >
+              <Form.Label className="text_label">Contraseña:</Form.Label>
+              <Form.Control  type="password" />
+              <i className="fas fa-lock fa-lg fa-fw" aria-hidden="true" />
+            </Form.Group>
+            {/* --------------CONFIRM PASSWORD---------------- */}
+            <Form.Group className="inputWithIcon" >
+              <Form.Label className="text_label">Confirmar Contraseña:</Form.Label>
+              <Form.Control  type="password" />
+              <i className="fas fa-lock fa-lg fa-fw" aria-hidden="true" />
+            </Form.Group>
+              <Row >
+                <Col>
+                    <FormCheck className="text_label" label="Estoy de acuerdo con los terminos y condiciones" />
+                </Col>
+              </Row>
+              <div className="text-center mt-3 mb-2">
+                  <Link to="/auth/login" >
+                    <Button className="alt_button hide_lg show_sm">Volver</Button>
+                  </Link>
+                  <Button className="login_button  ml-3">Registrar</Button>
+              </div>
+          </Form>
+          <div className="login_with_container border-top pt-3 mb-2">
+            <img src={facebook_icon} alt="LogIn With Fb" />
+            <img src={google_icon} alt="LogIn with Gmail" />
           </div>
-        </div>
-      </div>
-      {/* <div className="login_left_side">
-        <img src={register_img} alt="login_img" />
-        <span>¿Ya estas registrado?</span>
-        <button>Ingresar</button>
-      </div>
-      <div className="login_right_side">
-        <form className="form_login">
-          <h1>SignUp</h1>
-          <label>Nick:</label>
-          <div class="inputWithIcon">
-            <input type="text" />
-            <i class="fas fa-user fa-lg fa-fw" aria-hidden="true"></i>
-          </div>
-          <label>Correo:</label>
-          <div class="inputWithIcon">
-            <input type="text" />
-            <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
-          </div>
-          <label>Contraseña:</label>
-          <div class="inputWithIcon">
-            <input type="password" />
-            <i class="fas fa-lock fa-lg fa-fw" aria-hidden="true"></i>
-          </div>
-          <label>Confirmar Contraseña:</label>
-          <div class="inputWithIcon">
-            <input type="password" />
-            <i class="fas fa-lock fa-lg fa-fw" aria-hidden="true"></i>
-          </div>
-          <button>Crear Cuenta</button>
-          <div className="line_login "></div>
-          <div className="login_with_container">
-            <img src={facebook_icon} alt="" />
-            <img src={google_icon} alt="" />
-          </div>
-        </form>
-      </div> */}
+        </Col>
+      </Row>
     </>
   );
 };
