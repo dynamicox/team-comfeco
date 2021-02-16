@@ -1,11 +1,16 @@
 import { Layout } from './components/Layout';
-import { AppRouter } from './routers/AppRouter';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { authComponent } from './components/auth/authComponent';
 import './styles/index.scss';
+
 function App() {
 	return (
 		<>
 			<Layout>
-				<AppRouter />
+				<Switch>
+					<Route path="/auth" component={authComponent} />
+					<Redirect to="/auth/login" />
+				</Switch>
 			</Layout>
 		</>
 	);

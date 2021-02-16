@@ -4,20 +4,29 @@ import facebook_icon from "../../assets/images/facebook_icon.png";
 import { Form, Col, Row, Button, FormCheck } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import HTTP from "../../util/api.js";
+import { useAuth } from "../../contexts/AuthContext";
+
 
 export const LoginForm = () => {
   const methods = useForm({ mode: "onChange" });
+  const { logIn } = useAuth()
 
   const onSubmit = async (data) => {
-    console.log(data);
-    const resp = await HTTP.post("login", data);
+    const {email, password} = data
+    
+    try {
+      await logIn(email, password)
+      console.log("Funciona");
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
     <div>
       <Form onSubmit={methods.handleSubmit(onSubmit)}>
         <h1 className="text_label text-center pt-3 pb-4">Iniciar sesión</h1>
+        {/* -------------EMAIL------------- */}
         <Form.Group className="inputWithIcon">
           <Form.Label className="text_label">Correo:</Form.Label>
           <i className="fa fa-envelope fa-lg fa-fw" aria-hidden="true" />
@@ -29,8 +38,8 @@ export const LoginForm = () => {
               pattern: {
                 value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
                 message: "Porfavor introduzca un email valido.",
-              },
-            })}
+              }
+              }  )}
           />
           {methods.errors.email && (
             <li className="text_label text-danger">
@@ -39,6 +48,7 @@ export const LoginForm = () => {
             </li>
           )}
         </Form.Group>
+        {/* -----------PASSWORD------------ */}
         <Form.Group className="inputWithIcon">
           <Form.Label className="text_label">Contraseña:</Form.Label>
           <Form.Control

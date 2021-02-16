@@ -1,14 +1,21 @@
 import React from 'react'
-import { Row, Col, Button, Form, Image, FormControl } from "react-bootstrap";
+import { Row, Col, Button, Form, Image } from "react-bootstrap";
 import reset_pass from "../../assets/images/reset_pass.png";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useAuth  } from "../../contexts/AuthContext";
 
 export const ForgottenPass = () => {
     const methods = useForm({mode:'onChange'});
+    const { resetPass } = useAuth()
 
-    const onSubmit = (data) => {
-      console.log(data)
+    const onSubmit = async (data) => {
+      try {
+        await resetPass(data.email)
+        console.log('Funciona')
+      } catch (error) {
+        console.log(error)
+      }
     } 
 
     return (
