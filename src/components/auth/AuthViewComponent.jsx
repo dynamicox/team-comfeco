@@ -9,7 +9,7 @@ import { Register } from "./Register";
 import { Container, Card, Row, Col } from "react-bootstrap";
 import { ForgottenPass } from "./ForgottenPass";
 
-export const authComponent = () => {
+export const AuthViewComponent = () => {
   return (
     <>
     <div className="auth_container">

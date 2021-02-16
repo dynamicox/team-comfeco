@@ -2,13 +2,14 @@ import React from "react";
 import google_icon from "../../assets/images/google_icon.png";
 import facebook_icon from "../../assets/images/facebook_icon.png";
 import { Form, Col, Row, Button, FormCheck } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../contexts/AuthContext";
 
 
 export const LoginForm = () => {
   const methods = useForm({ mode: "onChange" });
+  const history = useHistory()
   const { logIn } = useAuth()
 
   const onSubmit = async (data) => {
@@ -17,6 +18,7 @@ export const LoginForm = () => {
     try {
       await logIn(email, password)
       console.log("Funciona");
+      history.push('/home')
     } catch (error) {
       console.log(error)
     }
@@ -84,7 +86,7 @@ export const LoginForm = () => {
           <Link to="/auth/register">
             <Button className="alt_button hide_lg show_sm">Registrarse</Button>
           </Link>
-          <Button type="submit" className="login_button  ml-3">
+          <Button type="submit" disabled={methods.formState.isSubmitting} className="login_button  ml-3">
             Ingresar
           </Button>
         </div>

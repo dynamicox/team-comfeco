@@ -1,6 +1,8 @@
 import { Layout } from './components/Layout';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { authComponent } from './components/auth/authComponent';
+import { AuthViewComponent } from './components/Auth/AuthViewComponent';
+import { PrivateRoute } from "./components/PrivateRoute";
+import { HomePageView } from "./components/Main/HomePageView";
 import './styles/index.scss';
 
 function App() {
@@ -8,8 +10,8 @@ function App() {
 		<>
 			<Layout>
 				<Switch>
-					<Route path="/auth" component={authComponent} />
-					<Redirect to="/auth/login" />
+					<PrivateRoute exact path="/home" component={HomePageView}/>
+					<Route path="/auth" component={AuthViewComponent} />
 				</Switch>
 			</Layout>
 		</>
