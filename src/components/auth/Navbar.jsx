@@ -8,7 +8,7 @@ export const Navigation = () => {
 
 		<Navbar bg="dark" className="loginNav">
 			<Navbar.Brand>
-				<Link to="/login">
+				<Link to="/auth/login">
 					<div
 				className="auth_navbar_logo"
 				style={{ backgroundImage: 'url(' + logoConf + ')' }}

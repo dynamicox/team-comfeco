@@ -31,6 +31,8 @@ export const AuthContextProvider = ( {children} ) => {
         const unsuscribe = auth.onAuthStateChanged( user => {
             SetCurrentUser(user)
             setLoading(false)
+            console.log(user)
+            
         })
         return unsuscribe
     }, [])
@@ -39,7 +41,8 @@ export const AuthContextProvider = ( {children} ) => {
         currentUser,
         signUp,
         logOut,
-        logIn
+        logIn,
+        resetPassword
     }
 
     return (

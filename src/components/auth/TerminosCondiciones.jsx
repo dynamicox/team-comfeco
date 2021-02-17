@@ -1,6 +1,6 @@
 import React from "react";
-import { Image, Container, Button, Row, Col } from "react-bootstrap";
-import { Navigation } from "../auth/Navbar";
+import { Container } from "react-bootstrap";
+import { Navigation } from "../Auth/Navbar";
 
 export const TC = () => {
   return (

@@ -2,20 +2,28 @@ import React from 'react'
 import google_icon from "../../assets/images/google_icon.png";
 import facebook_icon from "../../assets/images/facebook_icon.png";
 import { Form, Col, Row, Button, FormCheck } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../contexts/AuthContext";
+import { useStorage } from "../../contexts/StorageContext";
 
 
 export const RegisterForm = () => {
     const methods = useForm({mode:'onChange'});
+    const history = useHistory()
+    const {addUsername} = useStorage()
     const { signUp } = useAuth()
 
     const onSubmit = async (data) => {
-      console.log(data)
+        const {email, password, username} = data
       try {
-          await signUp(data.email, data.password)
-          console.log(data.password, data.email)
+         signUp(email, password).then( (userInfo)=> {
+            addUsername(userInfo.user.uid, username).then(()=> history.push('/'))
+            .catch((error)=>console.log(error))
+         })
+         .catch(
+                (err) => console.log(err)
+             );
       } catch (error) {
           console.log(error)
       }
