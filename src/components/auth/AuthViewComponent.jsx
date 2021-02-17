@@ -8,29 +8,31 @@ import { Navigation } from "./Navbar";
 import { Register } from "./Register";
 import { Container, Card, Row, Col } from "react-bootstrap";
 import { ForgottenPass } from "./ForgottenPass";
+import { TC } from "./TerminosCondiciones";
 
 export const AuthViewComponent = () => {
   return (
     <>
-    <div className="auth_container">
-      <Navigation />
-      <Container fluid="sm">
-        <Row className="d-flex justify-content-center align-items-center pt-4">
-        <Col xs="12" md="12" lg="10">
-          <Card className="shadow">
-            <Card.Body>
-              <Switch>
-                <Route exact path="/auth/login" component={Login} />
-                <Route exact path="/auth/register" component={Register} />
-                <Route exact path="/auth/reset" component={ForgottenPass} />
-              </Switch>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-      </Container>
-    </div >
-          <Footer />
+      <div className="auth_container">
+        <Navigation />
+        <Container fluid="sm">
+          <Row className="d-flex justify-content-center align-items-center pt-4">
+            <Col xs="12" md="12" lg="10">
+              <Card className="shadow">
+                <Card.Body>
+                  <Switch>
+                    <Route exact path="/auth/login" component={Login} />
+                    <Route exact path="/auth/register" component={Register} />
+                    <Route exact path="/auth/reset" component={ForgottenPass} />
+                    <Route exact path="/termino-condiciones" component={TC} />
+                  </Switch>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+      <Footer />
     </>
   );
 };
