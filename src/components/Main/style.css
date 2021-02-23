@@ -1,0 +1,30 @@
+.CommunityBadge {
+    background-color: #161856;
+    color: white;
+    border-radius: 15px;
+    border: none;
+}
+
+.CommunityBadge__title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.CommunityBadge__img {
+    align-self: center;
+}
+
+.columna {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.contenedor {
+    height: 85vh;
+}
+
+.CardCustom__img {
+    margin-top: -50px;
+}

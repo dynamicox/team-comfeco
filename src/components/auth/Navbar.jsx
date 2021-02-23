@@ -5,7 +5,7 @@ import { Navbar } from "react-bootstrap";
 
 export const Navigation = () => {
 	return (
-
+		
 		<Navbar bg="dark" className="loginNav">
 			<Navbar.Brand>
 				<Link to="/auth/login">

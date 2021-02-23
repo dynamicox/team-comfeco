@@ -6,10 +6,6 @@ const StorageContext = React.createContext()
 export const useStorage = () => {
     return useContext(StorageContext);
 }
-
-
-
-
 export const StorageContextProvider = ( {children} ) => {
     const ref = app.firestore().collection('users')
 

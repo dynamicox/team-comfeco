@@ -2,7 +2,7 @@ import React from "react";
 import img_error_404 from "../../assets/images/404.png";
 import { Link } from "react-router-dom";
 import { Image, Container, Button, Row, Col } from "react-bootstrap";
-import { Navigation } from "../Auth/Navbar";
+import { Navigation } from "../auth/Navbar";
 
 export const Error404 = () => {
   return (
