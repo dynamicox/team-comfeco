@@ -1,0 +1,69 @@
+.CommunityBadge {
+	color: white;
+	border-radius: 10px;
+	border: none;
+	width: 100%;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	font-family: 'Roboto Mono', monospace;
+	background: rgb(0, 212, 255);
+	background: linear-gradient(90deg, rgba(0, 212, 255, 1) 0%, rgba(9, 9, 121, 1) 55%, rgba(2, 0, 36, 1) 100%);
+}
+
+.CommunityBadge__title {
+	font-size: 1.1em;
+	font-weight: bold;
+	line-height: 23px;
+	text-transform: uppercase;
+}
+
+.CardCustom__item {
+	max-width: 180px;
+	width: 160px;
+	height: 180px;
+}
+
+.CommunityBadge__img {
+	align-self: center;
+}
+
+.columna {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.contenedor {
+	height: 85vh;
+}
+
+img {
+	object-fit: cover;
+}
+
+.CardCustom__img {
+	margin-top: -80px;
+}
+
+.followbadge {
+	background-color: white;
+	color: #161856;
+	padding: 3px 10px;
+	font-size: 14px;
+}
+
+.BtnApoyar {
+	background-color: #f9b14a;
+	outline: none;
+	border-color: #f9b14a;
+	padding: 10px;
+	border-radius: 30px;
+	width: 250px;
+}
+.Counter_Day {
+	background-color: #6c63ff;
+}
+.Counter_Day p {
+	font-size: 2vw;
+	color: white;
+}

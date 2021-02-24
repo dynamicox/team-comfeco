@@ -1,12 +1,15 @@
 import React from 'react'
-import { ThemeContextProvider } from '../contexts/ThemeContext'
+import { AuthContextProvider } from "../contexts/AuthContext";
+import { StorageContextProvider } from "../contexts/StorageContext";
 
 export const Layout = ( { children } ) => {
     return (
         <>
-            <ThemeContextProvider>
+        <StorageContextProvider>
+            <AuthContextProvider>
                 { children }
-            </ThemeContextProvider>
+            </AuthContextProvider>
+        </StorageContextProvider>
         </>
     )
 }

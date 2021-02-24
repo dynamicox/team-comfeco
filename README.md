@@ -1,3 +1,7 @@
+# team-react-40
+
+Este es el Repositorio donde trabajara el equipo de react 40
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
