@@ -1,48 +1,163 @@
-import { Button,Card, CardGroup, CardDeck, Container, Row, Col, Toast } from 'react-bootstrap'
-import { useAuth } from "../../contexts/AuthContext";
-import React from 'react'
-import { Navigation } from "../../components/auth/Navbar";
-import { Footer } from "../../components/auth/Footer";
+import React from 'react';
+import { Button, Card, CardGroup, CardDeck, Container, Row, Col, Toast } from 'react-bootstrap';
+import { useAuth } from '../../contexts/AuthContext';
 
-import {CommunityBadge} from "./CommunityBadge"
-import {CardCustom} from "./CardCustom"
+import { Navigation } from '../../components/auth/Navbar';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper.scss';
+import { Footer } from '../../components/auth/Footer';
+
+import { CommunityBadge } from './CommunityBadge';
+import { CardCustom } from './CardCustom';
+import { Counter } from './Counter';
 
 export const HomePageView = () => {
-    const { logOut } = useAuth() 
+	const { logOut } = useAuth();
 
-    return (     
-        <>
-            <Navigation />
-            <Container className="contenedor">
-            <Row>
-                <Col className="col-3">                
-                    <h2>Comunidades</h2>                
-                    <CommunityBadge name="Comunidad de Programadores" url="https://avatarapi.com/images/person2.jpg" />
-                    <CommunityBadge name="El Lenguaje de Programadores" url="https://avatarapi.com/images/person2.jpg" />
-                    <CommunityBadge name="Latam Dev" url="https://avatarapi.com/images/person2.jpg" />                
-                </Col>
-                <Col className="col-6 text-center">
-                    <h3>Bienvenidos a Community Fest and Code</h3>
-                    <p className="mb-3">¡Conoce gente, aprende y gana!</p>
-                    <p className="my-3 ">La próxima edición regresa en el 2022, en la cual se planea involucrar a todos los programadores independientmente del area de conocimiento que se encuentre, todo con un mismo proposito, aprender en comunidad.</p>
-                    <div>
-                    <CardDeck className="sliderCustom" >
-                          <CardCustom background="https://images.unsplash.com/photo-1588392382834-a891154bca4d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1510&q=80" avatar="https://banner2.cleanpng.com/20180920/yko/kisspng-computer-icons-portable-network-graphics-avatar-ic-5ba3c66df14d32.3051789815374598219884.jpg" title="Kevin kevin"></CardCustom>
-                          <CardCustom background="https://images.unsplash.com/photo-1540206395-68808572332f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=281&q=80" avatar="https://banner2.cleanpng.com/20180920/yko/kisspng-computer-icons-portable-network-graphics-avatar-ic-5ba3c66df14d32.3051789815374598219884.jpg" title="Kevin kevin"></CardCustom>
-                          <CardCustom background="https://images.unsplash.com/photo-1485632840868-3759a496894f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE5fHx8ZW58MHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" avatar="https://banner2.cleanpng.com/20180920/yko/kisspng-computer-icons-portable-network-graphics-avatar-ic-5ba3c66df14d32.3051789815374598219884.jpg" title="Kevin kevin"></CardCustom>
-                          <CardCustom background="https://images.unsplash.com/photo-1485632840868-3759a496894f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE5fHx8ZW58MHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" avatar="https://banner2.cleanpng.com/20180920/yko/kisspng-computer-icons-portable-network-graphics-avatar-ic-5ba3c66df14d32.3051789815374598219884.jpg" title="Kevin kevin"></CardCustom>
-                    </CardDeck>
-                    </div>
-                </Col>
-                <Col className="col-3">
-                    <h2>Talleres</h2>
-                </Col>
-            </Row>
-                <Button onClick={logOut}>Log out</Button>
-            </Container>
-            <Footer>
-            </Footer>
-        </>
-    )
-}
+	return (
+		<>
+			<Navigation />
+			<Container className='contenedor' fluid>
+				<Row>
+					<Col className='col-3'>
+						<h2>Comunidades</h2>
+						<Container
+							fluid
+							p-1
+							className='d-flex flex-column justify-content-center align-items-center'
+						>
+							<CommunityBadge
+								name='Comunidad de Programadores'
+								url='https://www.grupodigital.eu/blog/wp-content/uploads/2019/11/gamer-decorative-illustration-flat-design_23-2148250394-e1574340136197.jpg'
+							/>
+							<CommunityBadge
+								name='El Lenguaje de Programadores'
+								url='https://cdn.ticbeat.com/src/uploads/2020/04/lenguaje-cobol.jpg'
+							/>
+							<CommunityBadge
+								name='Latam Dev'
+								url='https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2.0,f_auto,g_center,h_1080,q_100,w_1080/v1/gcs/platform-data-goog/events/GDGDevFest_SocialAssetsLATAMv2-09_AC2P8PY.png'
+							/>
+						</Container>
+						<Button variant='primary' onClick={logOut}>
+							Log out
+						</Button>
+					</Col>
+					<Col className='col-6'>
+						<div className='text-center'>
+							<h3>Bienvenidos a Community Fest and Code</h3>
+							<p className='mb-3'>
+								¡Conoce gente, aprende y gana!
+							</p>
+							<p className='my-3 '>
+								La próxima edición regresa en el 2022, en
+								la cual se planea involucrar a todos los
+								programadores independientmente del area
+								de conocimiento que se encuentre, todo con
+								un mismo proposito, aprender en comunidad.
+							</p>
+							<h4 className='mb-3'>
+								Ellos ya creen en esta iniciativa:
+							</h4>
+						</div>
+
+						<Swiper
+							slidesPerView={4}
+							spaceBetween={10}
+							navigation
+							pagination={{ clickable: true }}
+							className='text-center'
+						>
+							<SwiperSlide>
+								<CardCustom
+									background='https://media.istockphoto.com/vectors/software-development-seamless-pattern-with-flat-line-icons-language-vector-id1199159518'
+									avatar='https://yt3.ggpht.com/ytc/AAUvwnjI1e_kjzToMdbPML1lfLgJxlArNmMbklUQYDsJ2Q=s900-c-k-c0x00ffffff-no-rj'
+									title='Kevin kevin'
+								></CardCustom>
+							</SwiperSlide>
+							<SwiperSlide>
+								<CardCustom
+									background='https://media.istockphoto.com/vectors/software-development-seamless-pattern-with-flat-line-icons-language-vector-id1199159518'
+									avatar='https://yt3.ggpht.com/ytc/AAUvwnjI1e_kjzToMdbPML1lfLgJxlArNmMbklUQYDsJ2Q=s900-c-k-c0x00ffffff-no-rj'
+									title='Kevin kevin'
+								></CardCustom>
+							</SwiperSlide>
+							<SwiperSlide>
+								<CardCustom
+									background='https://media.istockphoto.com/vectors/software-development-seamless-pattern-with-flat-line-icons-language-vector-id1199159518'
+									avatar='https://yt3.ggpht.com/ytc/AAUvwnjI1e_kjzToMdbPML1lfLgJxlArNmMbklUQYDsJ2Q=s900-c-k-c0x00ffffff-no-rj'
+									title='Kevin kevin'
+								></CardCustom>
+							</SwiperSlide>
+							<SwiperSlide>
+								<CardCustom
+									background='https://media.istockphoto.com/vectors/software-development-seamless-pattern-with-flat-line-icons-language-vector-id1199159518'
+									avatar='https://yt3.ggpht.com/ytc/AAUvwnjI1e_kjzToMdbPML1lfLgJxlArNmMbklUQYDsJ2Q=s900-c-k-c0x00ffffff-no-rj'
+									title='Kevin kevin'
+								></CardCustom>
+							</SwiperSlide>
+							<SwiperSlide>
+								<CardCustom
+									background='https://media.istockphoto.com/vectors/software-development-seamless-pattern-with-flat-line-icons-language-vector-id1199159518'
+									avatar='https://yt3.ggpht.com/ytc/AAUvwnjI1e_kjzToMdbPML1lfLgJxlArNmMbklUQYDsJ2Q=s900-c-k-c0x00ffffff-no-rj'
+									title='Kevin kevin'
+								></CardCustom>
+							</SwiperSlide>
+							<SwiperSlide>
+								<CardCustom
+									background='https://media.istockphoto.com/vectors/software-development-seamless-pattern-with-flat-line-icons-language-vector-id1199159518'
+									avatar='https://yt3.ggpht.com/ytc/AAUvwnjI1e_kjzToMdbPML1lfLgJxlArNmMbklUQYDsJ2Q=s900-c-k-c0x00ffffff-no-rj'
+									title='Kevin kevin'
+								></CardCustom>
+							</SwiperSlide>
+							<SwiperSlide>
+								<CardCustom
+									background='https://media.istockphoto.com/vectors/software-development-seamless-pattern-with-flat-line-icons-language-vector-id1199159518'
+									avatar='https://yt3.ggpht.com/ytc/AAUvwnjI1e_kjzToMdbPML1lfLgJxlArNmMbklUQYDsJ2Q=s900-c-k-c0x00ffffff-no-rj'
+									title='Kevin kevin'
+								></CardCustom>
+							</SwiperSlide>
+							<SwiperSlide>
+								<CardCustom
+									background='https://media.istockphoto.com/vectors/software-development-seamless-pattern-with-flat-line-icons-language-vector-id1199159518'
+									avatar='https://yt3.ggpht.com/ytc/AAUvwnjI1e_kjzToMdbPML1lfLgJxlArNmMbklUQYDsJ2Q=s900-c-k-c0x00ffffff-no-rj'
+									title='Kevin kevin'
+								></CardCustom>
+							</SwiperSlide>
+							<SwiperSlide>
+								<CardCustom
+									background='https://media.istockphoto.com/vectors/software-development-seamless-pattern-with-flat-line-icons-language-vector-id1199159518'
+									avatar='https://yt3.ggpht.com/ytc/AAUvwnjI1e_kjzToMdbPML1lfLgJxlArNmMbklUQYDsJ2Q=s900-c-k-c0x00ffffff-no-rj'
+									title='Kevin kevin'
+								></CardCustom>
+							</SwiperSlide>
+							<SwiperSlide>
+								<CardCustom
+									background='https://media.istockphoto.com/vectors/software-development-seamless-pattern-with-flat-line-icons-language-vector-id1199159518'
+									avatar='https://yt3.ggpht.com/ytc/AAUvwnjI1e_kjzToMdbPML1lfLgJxlArNmMbklUQYDsJ2Q=s900-c-k-c0x00ffffff-no-rj'
+									title='Kevin kevin'
+								></CardCustom>
+							</SwiperSlide>
+							<Button className='BtnApoyar  mt-3' size='lg'>
+								APOYAR INICIATIVA
+							</Button>
+						</Swiper>
+
+						<h3>Sponsors:</h3>
+
+						<h4 className='mb-3 text-center'>
+							Preparate lo bueno esta por venir...
+						</h4>
+
+						<Counter />
+					</Col>
+					<Col className='col-3'>
+						<h2 className='text-left'>Talleres</h2>
+					</Col>
+				</Row>
+				<Footer></Footer>
+			</Container>
+		</>
+	);
+};
