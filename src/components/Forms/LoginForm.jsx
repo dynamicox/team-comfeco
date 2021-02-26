@@ -18,7 +18,7 @@ export const LoginForm = () => {
     try {
       await logIn(email, password)
       console.log("Funciona");
-      history.push('/home')
+      history.push('/')
     } catch (error) {
       console.log(error)
     }

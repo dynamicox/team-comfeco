@@ -1,23 +1,85 @@
 import React from 'react';
 import { Button, Card, CardGroup, CardDeck, Container, Row, Col, Toast } from 'react-bootstrap';
-import { useAuth } from '../../contexts/AuthContext';
 
-import { Navigation } from '../../components/auth/Navbar';
+import { Navigation } from './Navigation';
+import { Footer } from "./Footer";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.scss';
-import { Footer } from '../../components/auth/Footer';
 
 import { CommunityBadge } from './CommunityBadge';
 import { CardCustom } from './CardCustom';
-import { Counter } from './Counter';
+import { Counter } from './Counter'; 
 
 export const HomePageView = () => {
-	const { logOut } = useAuth();
 
 	return (
 		<>
-			<Navigation />
+		<Navigation />
+		<Container>
+			<Row>
+				<Col>
+					<h1 className="text_label text-center pt-5">
+						Bienvenidos a Comunity Fest and Code!
+					</h1>
+					<h4 className="text_label text-muted text-center">
+						Conoce gente, aprende y gana!
+					</h4>
+					<p className="mt-3  text_label">
+						La próxima edición regresa en el 2022, en
+						la cual se planea involucrar a todos los
+						programadores independientmente del area
+						de conocimiento que se encuentre, todo con
+						un mismo proposito, aprender en comunidad.
+					</p>
+				</Col>
+			</Row>
+			<Row>
+				<Col>
+					<h2 className="text_label pt-5 text-center">Ellos ya creen en esta iniciativa</h2>
+					<Swiper
+					slidesPerView={4}
+					spaceBetween={10}
+					navigation
+					pagination={{ clickable: true }}
+					className='text-center mt-5'
+					>
+						<SwiperSlide>
+								<CardCustom
+									background='https://media.istockphoto.com/vectors/software-development-seamless-pattern-with-flat-line-icons-language-vector-id1199159518'
+									avatar='https://yt3.ggpht.com/ytc/AAUvwnjI1e_kjzToMdbPML1lfLgJxlArNmMbklUQYDsJ2Q=s900-c-k-c0x00ffffff-no-rj'
+									title='Kevin kevin'
+								/>
+							</SwiperSlide>
+					</Swiper>
+				</Col>
+			</Row>
+			<Row>
+				<Col>
+					<h2 className="text_label pt-5 text-center">Sponsors</h2>
+					<Swiper
+					slidesPerView={4}
+					spaceBetween={10}
+					navigation
+					pagination={{ clickable: true }}
+					className='text-center mt-5'
+					>
+						<SwiperSlide>
+								<CardCustom
+									background='https://media.istockphoto.com/vectors/software-development-seamless-pattern-with-flat-line-icons-language-vector-id1199159518'
+									avatar='https://yt3.ggpht.com/ytc/AAUvwnjI1e_kjzToMdbPML1lfLgJxlArNmMbklUQYDsJ2Q=s900-c-k-c0x00ffffff-no-rj'
+									title='Kevin kevin'
+								/>
+							</SwiperSlide>
+					</Swiper>
+				</Col>
+			</Row>
+			<Row>
+				<Counter/>
+			</Row>
+		</Container>
+		<Footer />
+			{/* <LoginNavigation />
 			<Container className='contenedor' fluid>
 				<Row>
 					<Col className='col-3'>
@@ -156,8 +218,7 @@ export const HomePageView = () => {
 						<h2 className='text-left'>Talleres</h2>
 					</Col>
 				</Row>
-				<Footer></Footer>
-			</Container>
+			</Container> */}
 		</>
 	);
 };

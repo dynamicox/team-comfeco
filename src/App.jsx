@@ -2,7 +2,7 @@ import { Layout } from "./components/Layout";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { AuthViewComponent } from "./components/auth/AuthViewComponent";
 import { PrivateRoute } from "./components/PrivateRoute";
-import { HomePageView } from "./components/Main/HomePageView";
+import { HomePageView } from "./components/main/HomePageView";
 import { Error404 } from "./components/Errors/Error404";
 import "./styles/index.scss";
 

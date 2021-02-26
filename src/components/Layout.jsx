@@ -3,11 +3,12 @@ import { AuthContextProvider } from "../contexts/AuthContext";
 import { StorageContextProvider } from "../contexts/StorageContext";
 
 export const Layout = ( { children } ) => {
+
     return (
         <>
         <StorageContextProvider>
             <AuthContextProvider>
-                { children }
+                    { children }
             </AuthContextProvider>
         </StorageContextProvider>
         </>

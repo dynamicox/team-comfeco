@@ -8,7 +8,7 @@ export const useAuth = () => {
 }
 
 export const AuthContextProvider = ( {children} ) => {
-    const [currentUser, SetCurrentUser] = useState()
+    const [currentUser, SetCurrentUser] = useState(null)
     const [loading, setLoading] = useState(true)
 
     const logIn = async (email, password) => {
