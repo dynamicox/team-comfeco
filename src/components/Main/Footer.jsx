@@ -7,6 +7,9 @@ export const Footer = () => {
             <Nav>
                 Copyray
             </Nav>
+            <Nav>
+                
+            </Nav>
         </Navbar>
     )
 }

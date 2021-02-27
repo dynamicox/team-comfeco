@@ -33,8 +33,7 @@ export const Counter = () => {
 		return () => clearInterval(interval);
 	}, [day_rest, hours_rest, minutes_rest, secunds_rest, active]);
 	return (
-		<Container fluid className='text-center Counter_Day p-1'>
-			<Row className='px-5'>
+			<Row className='py-5 px-5' noGutters={true}>
 				<Col>
 					<p>{day_rest}</p>
 					<br /> <span>Dias</span>
@@ -52,6 +51,5 @@ export const Counter = () => {
 					<br /> <span>Segundos</span>
 				</Col>
 			</Row>
-		</Container>
 	);
 };
