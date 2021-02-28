@@ -33,23 +33,27 @@ export const Counter = () => {
 		return () => clearInterval(interval);
 	}, [day_rest, hours_rest, minutes_rest, secunds_rest, active]);
 	return (
-			<Row className='py-5 px-5' noGutters={true}>
-				<Col>
-					<p>{day_rest}</p>
-					<br /> <span>Dias</span>
-				</Col>
-				<Col>
-					<p>{hours_rest}</p>
-					<br /> <span>Horas</span>
-				</Col>
-				<Col>
-					<p>{minutes_rest}</p>
-					<br /> <span>Minutos</span>
-				</Col>
-				<Col>
-					<p>{secunds_rest}</p>
-					<br /> <span>Segundos</span>
-				</Col>
-			</Row>
+		<Row
+			className='py-1 px-3 text-center text-light'
+			noGutters={true}
+			style={{ backgroundColor: '#020024', fontFamily: 'Roboto Mono' }}
+		>
+			<Col>
+				<p className='display-4 font-weight-bold'>{day_rest}</p>
+				<br /> <span style={{ fontSize: '1.4em' }}>Dias</span>
+			</Col>
+			<Col>
+				<p className='display-4 font-weight-bold'>{hours_rest}</p>
+				<br /> <span style={{ fontSize: '1.4em' }}>Horas</span>
+			</Col>
+			<Col>
+				<p className='display-4 font-weight-bold'>{minutes_rest}</p>
+				<br /> <span style={{ fontSize: '1.4em' }}>Minutos</span>
+			</Col>
+			<Col>
+				<p className='display-4 font-weight-bold'>{secunds_rest}</p>
+				<br /> <span style={{ fontSize: '1.4em' }}>Segundos</span>
+			</Col>
+		</Row>
 	);
 };

@@ -2,6 +2,7 @@
 	color: white;
 	border-radius: 10px;
 	border: none;
+	margin: 0 auto;
 	width: 100%;
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 	font-family: 'Roboto Mono', monospace;
@@ -10,10 +11,34 @@
 }
 
 .CommunityBadge__title {
-	font-size: 1.1em;
+	font-size: 1em;
 	font-weight: bold;
 	line-height: 23px;
 	text-transform: uppercase;
+}
+
+.WorkshopCard {
+	color: white;
+	border-radius: 10px;
+	margin: 0 auto;
+	width: 100%;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	font-family: 'Roboto Mono', monospace;
+}
+
+.WorkshopCard_right {
+	color: #020024;
+	background-color: rgb(245, 245, 245);
+}
+.WorkshopCard_left {
+	background-color: #020024;
+	border-radius: 10px 0px 0px 10px;
+}
+.WorkshopCard_teacher {
+	background-color: #020024;
+	color: white;
+	padding: 3px 10px;
+	font-size: 12px;
 }
 
 .CardCustom__item {
@@ -49,7 +74,7 @@ img {
 	background-color: white;
 	color: #161856;
 	padding: 3px 10px;
-	font-size: 14px;
+	font-size: 12px;
 }
 
 .BtnApoyar {
@@ -59,6 +84,10 @@ img {
 	padding: 10px;
 	border-radius: 30px;
 	width: 250px;
+	display: block;
+	margin: 0 auto;
+	font-weight: bold;
+	font-family: 'Roboto Mono', monospace;
 }
 .Counter_Day {
 	background-color: #6c63ff;
@@ -66,4 +95,7 @@ img {
 .Counter_Day p {
 	font-size: 2vw;
 	color: white;
+}
+
+@media only screen and (min-width: 775px) and (max-width: 1220px) {
 }
