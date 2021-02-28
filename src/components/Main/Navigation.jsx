@@ -2,6 +2,7 @@ import React from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { useAuth } from '../../contexts/AuthContext';
 import logo from '../../assets/images/logoConf.png';
+import {Link} from "react-router-dom";
 
 export const Navigation = () => {
 	const { logOut } = useAuth();
@@ -48,7 +49,9 @@ export const Navigation = () => {
 						title={<i className=' text-light fas fa-user-circle fa-2x ' />}
 						id='collasible-nav-dropdown'
 					>
-						<NavDropdown.Item href='#action/3.1'>Profile</NavDropdown.Item>
+						<NavDropdown.Item>
+							<Link to="/sub/profile"> Profile </Link>
+						</NavDropdown.Item>
 						<NavDropdown.Item href='#action/3.2'>Another</NavDropdown.Item>
 						<NavDropdown.Item href='#action/3.3'>
 							Something

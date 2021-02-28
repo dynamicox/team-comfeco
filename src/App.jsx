@@ -5,6 +5,7 @@ import { PrivateRoute } from './components/PrivateRoute';
 import { HomePageView } from './components/Main/HomePageView';
 import { Error404 } from './components/Errors/Error404';
 import './styles/index.scss';
+import {MainProfile} from "./components/Main/MainProfile";
 
 function App() {
 	return (
@@ -12,6 +13,7 @@ function App() {
 			<Layout>
 				<Switch>
 					<PrivateRoute exact path='/' component={HomePageView} />
+					<PrivateRoute exact path='/sub/profile' component={MainProfile} />
 					<Route path='/auth' component={AuthViewComponent} />
 					<Route path='*' component={Error404} />
 				</Switch>

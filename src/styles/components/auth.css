@@ -328,3 +328,67 @@ hr.loginForm{
 		display: inline-block;
 	}
 }
+
+.btn-outline-comfeco {
+	color: #6c63ff;
+	border-color: #6c63ff;
+}
+
+.btn-outline-comfeco:hover {
+	color: #ffffff;
+	background-color: #6c63ff;
+}
+
+.bg-content-profile{
+	background-color: #eeee;
+}
+.edit{
+	font-size: 12px;
+	font-family: 'Roboto Mono',
+	monospace;
+	color: #6c63ff;
+}
+
+.nick{
+	font-size: 18px;
+	font-weight: bold;
+	font-family: 'Roboto Mono',
+	monospace;
+	text-align: center;
+}
+
+.job{
+	font-size: 12px;
+	font-family: 'Roboto Mono',
+	monospace;
+	text-align: center;
+	color: #7a7070;
+}
+.experiencia{
+	font-size: 14px;
+	font-family: 'Roboto Mono',
+	monospace;
+	text-align: justify;
+}
+.posision-edit{
+	position: absolute;
+	right: 10px;
+}
+.bg-content-insignias{
+	background-color: rgba(249, 177, 74, 1);
+}
+.title-actividad{
+	color: #000000;
+	font-family: 'Roboto Mono',
+	monospace;
+	font-size: 20px;
+	font-weight: bold;
+}
+.bg-event{
+	background-color: #605959;
+}
+.ver-mas{
+	color: #ffffff;
+	background-color: #767373;
+}
+
