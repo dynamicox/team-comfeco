@@ -391,4 +391,7 @@ hr.loginForm{
 	color: #ffffff;
 	background-color: #767373;
 }
+.pointer{
+	cursor: pointer;
+}
 

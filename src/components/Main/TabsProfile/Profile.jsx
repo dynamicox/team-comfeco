@@ -150,8 +150,8 @@ export const Profile = () => {
                                                 <div className={"bg-event mt-2 rounded"}>
                                                     <p className={"text-white"}>Ecommunity Fest and Code</p>
                                                     <div className={"d-flex justify-content-between px-3 py-2"}>
-                                                        <span className={"p-2"}>Abandonar</span>
-                                                        <span className={"ver-mas p-2 rounded"}>Más información</span>
+                                                        <span className={"p-2 pointer"}>Abandonar</span>
+                                                        <span className={"ver-mas p-2 rounded pointer"}>Más información</span>
                                                     </div>
                                                 </div>
                                             </Col>
