@@ -5,12 +5,12 @@ import './style.css';
 export const CardCustom = (props) => {
 	return (
 		<Card className='CardCustom__item'>
-			<Card.Img variant='top' width={98} height={98} src={props.background} />
+			<Card.Img variant='top' width={100} height={125} src={props.avatar} />
 			<Card.Body>
 				<Image
 					className='CardCustom__img'
-					width={78}
-					height={78}
+					width={50}
+					height={50}
 					roundedCircle
 					src={props.avatar}
 				/>

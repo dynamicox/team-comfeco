@@ -1,163 +1,129 @@
 import React from 'react';
-import { Button, Card, CardGroup, CardDeck, Container, Row, Col, Toast } from 'react-bootstrap';
-import { useAuth } from '../../contexts/AuthContext';
+import { Button, Card, CardGroup, CardDeck, Container, Row, Col, Toast, Image } from 'react-bootstrap';
 
-import { Navigation } from '../../components/auth/Navbar';
+import { Navigation } from './Navigation';
+import { Footer } from './Footer';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.scss';
-import { Footer } from '../../components/auth/Footer';
 
 import { CommunityBadge } from './CommunityBadge';
+import { Workshop } from './Workshop';
 import { CardCustom } from './CardCustom';
 import { Counter } from './Counter';
 
 export const HomePageView = () => {
-	const { logOut } = useAuth();
-
 	return (
 		<>
 			<Navigation />
-			<Container className='contenedor' fluid>
-				<Row>
-					<Col className='col-3'>
-						<h2>Comunidades</h2>
-						<Container
-							fluid
-							p-1
-							className='d-flex flex-column justify-content-center align-items-center'
-						>
+			<Container fluid={true}>
+				<Row noGutters={true}>
+					<Col md='2'>
+						<div className='mt-5'>
+							<div>
+								<h4>Comunidades</h4>
+							</div>
 							<CommunityBadge
 								name='Comunidad de Programadores'
 								url='https://www.grupodigital.eu/blog/wp-content/uploads/2019/11/gamer-decorative-illustration-flat-design_23-2148250394-e1574340136197.jpg'
 							/>
 							<CommunityBadge
-								name='El Lenguaje de Programadores'
-								url='https://cdn.ticbeat.com/src/uploads/2020/04/lenguaje-cobol.jpg'
+								name='Comunidad de Programadores'
+								url='https://www.grupodigital.eu/blog/wp-content/uploads/2019/11/gamer-decorative-illustration-flat-design_23-2148250394-e1574340136197.jpg'
 							/>
 							<CommunityBadge
-								name='Latam Dev'
-								url='https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2.0,f_auto,g_center,h_1080,q_100,w_1080/v1/gcs/platform-data-goog/events/GDGDevFest_SocialAssetsLATAMv2-09_AC2P8PY.png'
+								name='Comunidad de Programadores'
+								url='https://www.grupodigital.eu/blog/wp-content/uploads/2019/11/gamer-decorative-illustration-flat-design_23-2148250394-e1574340136197.jpg'
 							/>
-						</Container>
-						<Button variant='primary' onClick={logOut}>
-							Log out
-						</Button>
-					</Col>
-					<Col className='col-6'>
-						<div className='text-center'>
-							<h3>Bienvenidos a Community Fest and Code</h3>
-							<p className='mb-3'>
-								¡Conoce gente, aprende y gana!
-							</p>
-							<p className='my-3 '>
-								La próxima edición regresa en el 2022, en
-								la cual se planea involucrar a todos los
-								programadores independientmente del area
-								de conocimiento que se encuentre, todo con
-								un mismo proposito, aprender en comunidad.
-							</p>
-							<h4 className='mb-3'>
-								Ellos ya creen en esta iniciativa:
-							</h4>
+							<span className='font-weight-bold text-secondary'>
+								Ver más...
+							</span>
 						</div>
-
+					</Col>
+					<Col>
+						<h1 className='text_label text-center pt-4 font-weight-bold'>
+							Bienvenidos a Comunity Fest and Code!
+						</h1>
+						<h4 className='text_label text-muted text-center font-weight-bold'>
+							Conoce gente, aprende y gana!
+						</h4>
+						<p className='mt-3  text_label text-center'>
+							La próxima edición regresa en el 2022, en la cual se
+							planea involucrar a todos los programadores
+							independientmente del area de conocimiento que se
+							encuentre, todo con un mismo proposito, aprender en
+							comunidad.
+						</p>
+						<h3 className='text_label pt-5 text-center font-weight-bold'>
+							Ellos ya creen en esta iniciativa:
+						</h3>
 						<Swiper
 							slidesPerView={4}
 							spaceBetween={10}
 							navigation
 							pagination={{ clickable: true }}
-							className='text-center'
+							className='text-center mt-5'
 						>
 							<SwiperSlide>
 								<CardCustom
 									background='https://media.istockphoto.com/vectors/software-development-seamless-pattern-with-flat-line-icons-language-vector-id1199159518'
 									avatar='https://yt3.ggpht.com/ytc/AAUvwnjI1e_kjzToMdbPML1lfLgJxlArNmMbklUQYDsJ2Q=s900-c-k-c0x00ffffff-no-rj'
-									title='Kevin kevin'
-								></CardCustom>
+									title='Jonathan Silverio'
+								/>
 							</SwiperSlide>
-							<SwiperSlide>
-								<CardCustom
-									background='https://media.istockphoto.com/vectors/software-development-seamless-pattern-with-flat-line-icons-language-vector-id1199159518'
-									avatar='https://yt3.ggpht.com/ytc/AAUvwnjI1e_kjzToMdbPML1lfLgJxlArNmMbklUQYDsJ2Q=s900-c-k-c0x00ffffff-no-rj'
-									title='Kevin kevin'
-								></CardCustom>
-							</SwiperSlide>
-							<SwiperSlide>
-								<CardCustom
-									background='https://media.istockphoto.com/vectors/software-development-seamless-pattern-with-flat-line-icons-language-vector-id1199159518'
-									avatar='https://yt3.ggpht.com/ytc/AAUvwnjI1e_kjzToMdbPML1lfLgJxlArNmMbklUQYDsJ2Q=s900-c-k-c0x00ffffff-no-rj'
-									title='Kevin kevin'
-								></CardCustom>
-							</SwiperSlide>
-							<SwiperSlide>
-								<CardCustom
-									background='https://media.istockphoto.com/vectors/software-development-seamless-pattern-with-flat-line-icons-language-vector-id1199159518'
-									avatar='https://yt3.ggpht.com/ytc/AAUvwnjI1e_kjzToMdbPML1lfLgJxlArNmMbklUQYDsJ2Q=s900-c-k-c0x00ffffff-no-rj'
-									title='Kevin kevin'
-								></CardCustom>
-							</SwiperSlide>
-							<SwiperSlide>
-								<CardCustom
-									background='https://media.istockphoto.com/vectors/software-development-seamless-pattern-with-flat-line-icons-language-vector-id1199159518'
-									avatar='https://yt3.ggpht.com/ytc/AAUvwnjI1e_kjzToMdbPML1lfLgJxlArNmMbklUQYDsJ2Q=s900-c-k-c0x00ffffff-no-rj'
-									title='Kevin kevin'
-								></CardCustom>
-							</SwiperSlide>
-							<SwiperSlide>
-								<CardCustom
-									background='https://media.istockphoto.com/vectors/software-development-seamless-pattern-with-flat-line-icons-language-vector-id1199159518'
-									avatar='https://yt3.ggpht.com/ytc/AAUvwnjI1e_kjzToMdbPML1lfLgJxlArNmMbklUQYDsJ2Q=s900-c-k-c0x00ffffff-no-rj'
-									title='Kevin kevin'
-								></CardCustom>
-							</SwiperSlide>
-							<SwiperSlide>
-								<CardCustom
-									background='https://media.istockphoto.com/vectors/software-development-seamless-pattern-with-flat-line-icons-language-vector-id1199159518'
-									avatar='https://yt3.ggpht.com/ytc/AAUvwnjI1e_kjzToMdbPML1lfLgJxlArNmMbklUQYDsJ2Q=s900-c-k-c0x00ffffff-no-rj'
-									title='Kevin kevin'
-								></CardCustom>
-							</SwiperSlide>
-							<SwiperSlide>
-								<CardCustom
-									background='https://media.istockphoto.com/vectors/software-development-seamless-pattern-with-flat-line-icons-language-vector-id1199159518'
-									avatar='https://yt3.ggpht.com/ytc/AAUvwnjI1e_kjzToMdbPML1lfLgJxlArNmMbklUQYDsJ2Q=s900-c-k-c0x00ffffff-no-rj'
-									title='Kevin kevin'
-								></CardCustom>
-							</SwiperSlide>
-							<SwiperSlide>
-								<CardCustom
-									background='https://media.istockphoto.com/vectors/software-development-seamless-pattern-with-flat-line-icons-language-vector-id1199159518'
-									avatar='https://yt3.ggpht.com/ytc/AAUvwnjI1e_kjzToMdbPML1lfLgJxlArNmMbklUQYDsJ2Q=s900-c-k-c0x00ffffff-no-rj'
-									title='Kevin kevin'
-								></CardCustom>
-							</SwiperSlide>
-							<SwiperSlide>
-								<CardCustom
-									background='https://media.istockphoto.com/vectors/software-development-seamless-pattern-with-flat-line-icons-language-vector-id1199159518'
-									avatar='https://yt3.ggpht.com/ytc/AAUvwnjI1e_kjzToMdbPML1lfLgJxlArNmMbklUQYDsJ2Q=s900-c-k-c0x00ffffff-no-rj'
-									title='Kevin kevin'
-								></CardCustom>
-							</SwiperSlide>
-							<Button className='BtnApoyar  mt-3' size='lg'>
-								APOYAR INICIATIVA
-							</Button>
 						</Swiper>
-
-						<h3>Sponsors:</h3>
-
-						<h4 className='mb-3 text-center'>
-							Preparate lo bueno esta por venir...
-						</h4>
-
-						<Counter />
+						<Button className='BtnApoyar mt-2'>Apoyar Iniciativa</Button>
+						{/* SPONSORS */}
+						<h2 className='text_label pt-5 text-center'>Sponsors</h2>
+						<Swiper
+							slidesPerView={4}
+							spaceBetween={10}
+							navigation
+							pagination={{ clickable: true }}
+							className='text-center mt-5 mb-3'
+						>
+							<SwiperSlide>
+								<Image
+									src='https://logos-marcas.com/wp-content/uploads/2020/04/Huawei-Logotipo-2018%E2%80%93presente.jpg'
+									roundedCircle
+									style={{
+										height: '100px',
+										backgroundImage:
+											'fit',
+									}}
+								/>
+							</SwiperSlide>
+						</Swiper>
+						<h3 className='text_label py-3 text-center font-weight-bold'>
+							Preparate lo bueno esta por venir:
+						</h3>
 					</Col>
-					<Col className='col-3'>
-						<h2 className='text-left'>Talleres</h2>
+					<Col md='2' className='w-100'>
+						<div className='mt-5'>
+							<div>
+								<div>
+									<h4>Talleres</h4>
+								</div>
+								<Workshop
+									name='State of Javascript'
+									time='14:00'
+									coach='Juan Pablo de la Torre'
+								/>
+								<Workshop
+									name='IA con Python'
+									time='22:00'
+									coach='Yesi Days'
+								/>
+							</div>
+							<span className='font-weight-bold text-secondary'>
+								Ver más...
+							</span>
+						</div>
 					</Col>
 				</Row>
-				<Footer></Footer>
+				<Counter />
 			</Container>
+			<Footer />
 		</>
 	);
 };
