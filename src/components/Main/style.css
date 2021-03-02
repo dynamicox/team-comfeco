@@ -30,10 +30,12 @@
 	color: #020024;
 	background-color: rgb(245, 245, 245);
 }
+
 .WorkshopCard_left {
 	background-color: #020024;
 	border-radius: 10px 0px 0px 10px;
 }
+
 .WorkshopCard_teacher {
 	background-color: #020024;
 	color: white;
@@ -89,13 +91,41 @@ img {
 	font-weight: bold;
 	font-family: 'Roboto Mono', monospace;
 }
+
 .Counter_Day {
 	background-color: #6c63ff;
 }
+
 .Counter_Day p {
 	font-size: 2vw;
 	color: white;
 }
 
-@media only screen and (min-width: 775px) and (max-width: 1220px) {
+.text-edit {
+	font-family: 'Roboto Mono',
+		monospace;
+	font-size: 20px;
 }
+
+.camera {
+	position: absolute;
+	background-color: rgba(255, 255, 255, .85);
+	bottom: -15px;
+	right: 0;
+	width: 100%;
+	transform: translate(0, -50%);
+}
+
+.camera i {
+	font-size: 20px;
+}
+
+#image-profile {
+	border: 2px solid #ccc;
+}
+
+#image-profile:hover>.camera {
+	background-color: #fff;
+}
+
+@media only screen and (min-width: 775px) and (max-width: 1220px) {}

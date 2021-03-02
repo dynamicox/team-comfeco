@@ -13,7 +13,7 @@
 .text_label {
 	font-family: 'Roboto Mono',
 		monospace;
-	
+
 }
 
 .register_button {
@@ -203,7 +203,8 @@ p {
 
 /* Css Font*/
 input[type='text'],
-input[type='password'] {
+input[type='password'],
+input[type='date'] {
 	width: 100%;
 	border: 1px solid rgb(168, 159, 159);
 	border-radius: 4px;
@@ -221,7 +222,8 @@ input[type='password']:focus {
 }
 
 .inputWithIcon input[type='text'],
-input[type='password'] {
+input[type='password'],
+input[type='date'] {
 	padding-left: 2.2rem;
 }
 
@@ -247,6 +249,7 @@ input[type='password'] {
 	padding: 9px 4px;
 	border-radius: 4px 0 0 4px;
 }
+
 .inputWithIcon-reset i {
 	position: absolute;
 	left: 1rem;
@@ -258,11 +261,11 @@ input[type='password'] {
 
 .auth_footer_container {
 	width: 100%;
- 	background: rgb(121,34,111);
-	background: -moz-linear-gradient(0deg, rgba(121,34,111,1) 3%, rgba(139,25,126,1) 86%);
-	background: -webkit-linear-gradient(0deg, rgba(121,34,111,1) 3%, rgba(139,25,126,1) 86%);
-	background: linear-gradient(0deg, rgba(121,34,111,1) 3%, rgba(139,25,126,1) 86%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#79226f",endColorstr="#8b197e",GradientType=1);
+	background: rgb(121, 34, 111);
+	background: -moz-linear-gradient(0deg, rgba(121, 34, 111, 1) 3%, rgba(139, 25, 126, 1) 86%);
+	background: -webkit-linear-gradient(0deg, rgba(121, 34, 111, 1) 3%, rgba(139, 25, 126, 1) 86%);
+	background: linear-gradient(0deg, rgba(121, 34, 111, 1) 3%, rgba(139, 25, 126, 1) 86%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#79226f", endColorstr="#8b197e", GradientType=1);
 	font-size: 1em;
 	color: #ffff;
 	font-family: 'Roboto Mono', monospace;
@@ -302,29 +305,32 @@ input[type='password'] {
 	width: 50px;
 	cursor: pointer;
 }
-.loginNav{
+
+.loginNav {
 	height: 3.7rem;
 }
 
-hr.loginForm{ 
+hr.loginForm {
 	margin-left: 10px;
-    border:         none;
-    border-left:    1px solid rgba(121, 119, 119, 0.384);
-    height: 29rem;
-    width:          1px;       
+	border: none;
+	border-left: 1px solid rgba(121, 119, 119, 0.384);
+	height: 29rem;
+	width: 1px;
 }
 
-.hide_lg{
+.hide_lg {
 	display: none;
 }
-@media (max-width: 767px){
-	.responsiveLogin{
-	position: absolute;
-	display: none;
-	visibility: hidden;
-	z-index: -1;
-}
-	.show_sm{
+
+@media (max-width: 767px) {
+	.responsiveLogin {
+		position: absolute;
+		display: none;
+		visibility: hidden;
+		z-index: -1;
+	}
+
+	.show_sm {
 		display: inline-block;
 	}
 }
@@ -339,59 +345,66 @@ hr.loginForm{
 	background-color: #6c63ff;
 }
 
-.bg-content-profile{
+.bg-content-profile {
 	background-color: #eeee;
 }
-.edit{
+
+.edit {
 	font-size: 12px;
 	font-family: 'Roboto Mono',
-	monospace;
+		monospace;
 	color: #6c63ff;
 }
 
-.nick{
+.nick {
 	font-size: 18px;
 	font-weight: bold;
 	font-family: 'Roboto Mono',
-	monospace;
+		monospace;
 	text-align: center;
 }
 
-.job{
+.job {
 	font-size: 12px;
 	font-family: 'Roboto Mono',
-	monospace;
+		monospace;
 	text-align: center;
 	color: #7a7070;
 }
-.experiencia{
+
+.experiencia {
 	font-size: 14px;
 	font-family: 'Roboto Mono',
-	monospace;
+		monospace;
 	text-align: justify;
 }
-.posision-edit{
+
+.posision-edit {
 	position: absolute;
 	right: 10px;
 }
-.bg-content-insignias{
+
+.bg-content-insignias {
 	background-color: rgba(249, 177, 74, 1);
 }
-.title-actividad{
+
+.title-actividad {
 	color: #000000;
 	font-family: 'Roboto Mono',
-	monospace;
+		monospace;
 	font-size: 20px;
 	font-weight: bold;
 }
-.bg-event{
+
+.bg-event {
 	background-color: #605959;
 }
-.ver-mas{
+
+.ver-mas {
 	color: #ffffff;
 	background-color: #767373;
 }
-.pointer{
+
+.pointer {
 	cursor: pointer;
 }
-
