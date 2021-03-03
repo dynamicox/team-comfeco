@@ -14,15 +14,17 @@ export const Navigation = () => {
 			expand='md'
 			style={{ padding: '0px', backgroundColor: '#020024' }}
 		>
-			<Navbar.Brand className='ml-5 pl-2' href='#home'>
-				<img
-					src={logo}
-					width='190'
-					height='55'
-					className='d-inline-block align-top'
-					alt='React Bootstrap logo'
-				/>
-			</Navbar.Brand>
+			<Link to="/">
+				<Navbar.Brand className='pl-2' href='#home'>
+					<img
+						src={logo}
+						width='190'
+						height='55'
+						className='d-inline-block align-top'
+						alt='React Bootstrap logo'
+					/>
+				</Navbar.Brand>
+			</Link>
 			<Navbar.Toggle aria-controls='responsive-navbar-nav' />
 			<Navbar.Collapse id='responsive-navbar-nav'>
 				<Nav
@@ -49,9 +51,11 @@ export const Navigation = () => {
 						title={<i className=' text-light fas fa-user-circle fa-2x ' />}
 						id='collasible-nav-dropdown'
 					>
-						<NavDropdown.Item>
-							<Link to="/sub/profile"> Profile </Link>
-						</NavDropdown.Item>
+						<Link to="/sub/profile">
+							<NavDropdown.Item>
+								Profile 
+							</NavDropdown.Item>
+						</Link>
 						<NavDropdown.Item href='#action/3.2'>Another</NavDropdown.Item>
 						<NavDropdown.Item href='#action/3.3'>
 							Something

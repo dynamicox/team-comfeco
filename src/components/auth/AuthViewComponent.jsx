@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 
 import "../../styles/components/auth.css";
 import { Footer } from "./Footer";
@@ -9,8 +9,10 @@ import { Register } from "./Register";
 import { Container, Card, Row, Col } from "react-bootstrap";
 import { ForgottenPass } from "./ForgottenPass";
 import { TC } from "./TerminosCondiciones";
+import { useAuth } from "../../contexts/AuthContext";
 
 export const AuthViewComponent = () => {
+
   return (
     <>
       <div className="auth_container">
