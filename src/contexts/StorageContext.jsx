@@ -14,8 +14,12 @@ export const StorageContextProvider = ( {children} ) => {
             username
         })
     }
+    const editProfile = async (userID, profileInfoObj) => {
+        return await ref.doc(userID).set(profileInfoObj)
+    }
     const value={
-        addUsername
+        addUsername,
+        editProfile
     }
 
     return (

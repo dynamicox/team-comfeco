@@ -25,7 +25,7 @@ export const EditProfile = () => {
 			<Row className={'border-bottom py-3'}>
 				<Col lg={4} md={12} className={'text-center'}>
 					<Link to={'/sub/profile'}>
-						<i class='fas fa-arrow-left' style={{ fontSize: '25px' }}></i>
+						<i className='fas fa-arrow-left' style={{ fontSize: '25px' }}></i>
 					</Link>
 				</Col>
 				<Col xl={8} lg={8} md={10} sm={12} xs={12}>
@@ -53,7 +53,7 @@ export const EditProfile = () => {
 							/>
 							<span className={'camera text-center py-1'}>
 								<i
-									class='fas fa-camera-retro'
+									className='fas fa-camera-retro'
 									style={{ cursor: 'pointer' }}
 									onClick={() => {
 										document.getElementById(

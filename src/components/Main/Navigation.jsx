@@ -47,7 +47,6 @@ export const Navigation = () => {
 				<Nav>
 					<NavDropdown
 						className='mr-3 pr-5 text-center'
-						flip={true}
 						title={<i className=' text-light fas fa-user-circle fa-2x ' />}
 						id='collasible-nav-dropdown'
 					>
