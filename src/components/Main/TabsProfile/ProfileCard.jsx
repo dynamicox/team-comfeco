@@ -2,16 +2,13 @@ import React from 'react'
 import { Col, Image, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const ProfileCard = () => {
+export const ProfileCard = ({username, field, biography}) => {
     return (
         <>
-            <Row className={"d-flex justify-content-center py-3"}>
+            <Row className={"d-flex justify-content-center py-3"} >
                   <Col
-                    xl={11}
                     lg={11}
                     md={12}
-                    sm={12}
-                    xs={12}
                     className={"bg-content-profile py-3"}
                   >
                     <Row className={"p-0"}>
@@ -36,16 +33,13 @@ export const ProfileCard = () => {
                         xs={12}
                         className={"text-center mb-2"}
                       >
-                        <p className={"nick m-0"}>Nick del usuario</p>
-                        <p className={"job"}>Frontend Developer / UI/UIX</p>
+                        <p className={"nick m-0"}>{username}</p>
+                        <br />
+                        <p className={"job"}> {field} </p>
                       </Col>
                       <Col xs={12}>
                         <p className={"experiencia m-0"}>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit. Accusamus aliquam amet, animi at culpa deserunt
-                          eius facilis fuga in inventore ipsam laborum modi
-                          molestiae nulla odio quis, reprehenderit sed
-                          voluptates?
+                          {biography || "Edita tu perfil y cuentanos un poco mas sobre ti"}
                         </p>
                       </Col>
                       <Col

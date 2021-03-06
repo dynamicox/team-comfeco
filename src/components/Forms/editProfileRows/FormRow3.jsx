@@ -18,7 +18,7 @@ export const EditFormRow3 = ({methods}) => {
 									name='field'
 									ref={methods.register}
 								>
-									<option>Select algo</option>
+									<option value="">Seleccione area de conocimiento</option>
 									<option>Front End</option>
 									<option>Back End</option>
 									<option>Dev Ops</option>
@@ -49,14 +49,13 @@ export const EditFormRow3 = ({methods}) => {
 								type='password'
 								name='new_password'
 								ref={methods.register({
-									required:
-										'Porfavor complete este campo',
 									pattern: {
 										value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/g,
-										message: `La contraseña debe tener al menos 8 caracteres, e incluir un numero `,
+										message: `La contraseña debe tener al menos 8 caracteres, e incluir 1 numero `,
 									},
 								})}
 							/>
+							{methods.errors.new_password && <li className="text-danger">{methods.errors.new_password.message}</li>}
 						</Form.Group>
 					</Col>
 					{/* ----------------CONFIRMAR CONTRASEÑA--------------- */}
@@ -73,8 +72,6 @@ export const EditFormRow3 = ({methods}) => {
 								type='password'
 								name='conf_password'
 								ref={methods.register({
-									required:
-										'Porfavor complete este campo',
 									validate: () => {
 										if (
 											methods.getValues(
@@ -90,6 +87,28 @@ export const EditFormRow3 = ({methods}) => {
 									},
 								})}
 							/>
+							{methods.errors.conf_password && <li className="text-danger">{methods.errors.conf_password.message}</li>}
+						</Form.Group>
+					</Col>
+					{/* ----------------CONTRASEÑA ACTUAL--------------- */}
+					<Col xs="12">
+						<Form.Group className='inputWithIcon'>
+							<Form.Label className='text_label'>
+								Contraseña Actual:
+							</Form.Label>
+							<i
+								className='fas fa-lock fa-lg fa-fw'
+								aria-hidden='true'
+							/>
+							<Form.Control
+								type='password'
+								name='current_password'
+								ref={methods.register({
+									required:"Para hacer cualquier cambio debe de ingresar primero su contraseña actual"
+								})}
+							/>
+							{methods.errors.confirmacion && <li className="text-danger">{methods.errors.confirmacion.message}</li> }
+							{methods.errors.current_password && <li className="text-danger">{methods.errors.current_password.message}</li>}
 						</Form.Group>
 					</Col>
 				</Form.Row>

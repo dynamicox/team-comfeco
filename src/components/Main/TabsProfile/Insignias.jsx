@@ -4,7 +4,7 @@ import { Col, Image, Row } from "react-bootstrap";
 
 export const Insignias = () => {
     return (
-        <div>
+        <>
             <div className={"py-3"}>
                   <Row className={"bg-content-insignias py-2 rounded"}>
                     <Col
@@ -77,8 +77,8 @@ export const Insignias = () => {
                         </Col>
                       </Row>
                     </Col>
-                  </Row>
+                  </Row>                  
                 </div>
-        </div>
+        </>
     )
 }

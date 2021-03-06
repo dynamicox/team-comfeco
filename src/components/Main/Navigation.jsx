@@ -50,11 +50,11 @@ export const Navigation = () => {
 						title={<i className=' text-light fas fa-user-circle fa-2x ' />}
 						id='collasible-nav-dropdown'
 					>
-						<Link to="/sub/profile">
 							<NavDropdown.Item>
+						<	Link to="/sub/profile">
 								Profile 
+							</Link>
 							</NavDropdown.Item>
-						</Link>
 						<NavDropdown.Item href='#action/3.2'>Another</NavDropdown.Item>
 						<NavDropdown.Item href='#action/3.3'>
 							Something

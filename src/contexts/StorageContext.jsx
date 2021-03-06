@@ -7,19 +7,24 @@ export const useStorage = () => {
     return useContext(StorageContext);
 }
 export const StorageContextProvider = ( {children} ) => {
-    const ref = app.firestore().collection('users')
+    const userRef = app.firestore().collection('users')
 
     const addUsername = async (userID, username) => {
-        return await ref.doc(userID).set({
+        return await userRef.doc(userID).set({
             username
         })
     }
     const editProfile = async (userID, profileInfoObj) => {
-        return await ref.doc(userID).set(profileInfoObj)
+        return await userRef.doc(userID).set(profileInfoObj)
+    }
+
+    const getProfileInfo = async (userID) => {
+        return await userRef.doc(userID).get()
     }
     const value={
         addUsername,
-        editProfile
+        editProfile,
+        getProfileInfo
     }
 
     return (

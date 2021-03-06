@@ -22,14 +22,12 @@ export const EditProfile = () => {
 	};
 	return (
 		<Container fluid style={{ minHeight: '100vh' }}>
-			<Row className={'border-bottom py-3'}>
-				<Col lg={4} md={12} className={'text-center'}>
-					<Link to={'/sub/profile'}>
+			<Row className="border-bottom py-3 px-5">
+					<Link to='/sub/profile'>
 						<i className='fas fa-arrow-left' style={{ fontSize: '25px' }}></i>
 					</Link>
-				</Col>
-				<Col xl={8} lg={8} md={10} sm={12} xs={12}>
-					<p className={'text-edit'}>Editar perfil</p>
+				<Col className='text-edit text-center'>
+					<p  >Editar perfil</p>
 				</Col>
 			</Row>
 			<Row className={'d-flex justify-content-center'}>

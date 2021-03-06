@@ -5,15 +5,9 @@ import { Link } from "react-router-dom";
 export const Eventos = () => {
     return (
         <>
-            <Col className="my-3 py-3 bg-content-profile"  >
+            <Col className="my-3 py-4 bg-content-profile"  >
                       <Col xs="12" className="mb-2">
                         <p className={"m-0"}>Eventos de tu interes</p>
-                        <Link
-                          className={"edit float-right"}
-                          to="update/profile"
-                        >
-                          Ver más
-                        </Link>
                       </Col>
                       <Col
                         xs={12}
@@ -37,11 +31,14 @@ export const Eventos = () => {
                           >
                             <span className={"p-2 pointer"}>Abandonar</span>
                             <span className={"ver-mas p-2 rounded pointer"}>
-                              Más información
+                              Saber mas
                             </span>
                           </div>
                         </div>
                       </Col>
+                      <Link className={"edit float-right pb-2 mb-2" } to="update/profile" >
+                          Ver más
+                        </Link>
             </Col>  
         </>
     )

@@ -2,7 +2,7 @@ import React from 'react'
 import { Col, Form } from 'react-bootstrap';
 
 
-export const EditFormRow1 = ({methods}) => {
+export const EditFormRow1 = ({methods, username, email}) => {
     return (
         <Form.Row>
             {/* ---------------USUARIO---------------- */}
@@ -16,10 +16,8 @@ export const EditFormRow1 = ({methods}) => {
                     <Form.Control
                         type='text'
                         name='username'
-                        ref={methods.register({
-                            required:
-                                'No puedes dejar este campo vacio',
-                        })}
+                        placeholder={username}
+                        ref={methods.register()}
                     />
                 </Form.Group>
             </Col>
@@ -36,8 +34,13 @@ export const EditFormRow1 = ({methods}) => {
                     <Form.Control
                         type='text'
                         name='email'
-                        ref={methods.register}
+                        placeholder={email}
+                        ref={methods.register({pattern: {
+                                value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+                                message: "Porfavor introduzca un email valido.",
+                            }})}
                     />
+                    {methods.errors.email && <li className="text-danger">{methods.errors.email.message}</li>}
                 </Form.Group>
             </Col>
         </Form.Row>

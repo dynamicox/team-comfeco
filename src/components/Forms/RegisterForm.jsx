@@ -17,9 +17,12 @@ export const RegisterForm = () => {
     const onSubmit = async (data) => {
         const {email, password, username} = data
       try {
-         signUp(email, password).then( (userInfo)=> {
-            addUsername(userInfo.user.uid, username).then(()=> history.push('/'))
-            .catch((error)=>console.log(error))
+         signUp(email, password).then( async (userInfo)=> {
+             
+                await userInfo.user.updateProfile({displayName: username})
+
+             addUsername(userInfo.user.uid, username).then(()=> history.push('/'))
+            .catch((error)=>console.log(error)) 
          })
          .catch(
                 (err) => console.log(err)

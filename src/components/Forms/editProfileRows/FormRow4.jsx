@@ -13,6 +13,7 @@ export const EditFormRow4 = ({methods}) => {
 							/>
 							<Form.Control
 								type='text'
+								placeholder="https://facebook.com/example"
 								name='link_facebook'
 								ref={methods.register}
 							/>
@@ -24,6 +25,7 @@ export const EditFormRow4 = ({methods}) => {
 							<i className='fab fa-github fa-2x pr-1' />
 							<Form.Control
 								type='text'
+								placeholder="https://github.com/example"
 								name='link_github'
 								ref={methods.register}
 							/>
@@ -39,6 +41,7 @@ export const EditFormRow4 = ({methods}) => {
 							<Form.Control
 								type='text'
 								name='link_linkedin'
+								placeholder="https://linkedin.com/example"
 								ref={methods.register}
 							/>
 						</Form.Group>
@@ -53,6 +56,7 @@ export const EditFormRow4 = ({methods}) => {
 							<Form.Control
 								type='text'
 								name='link_twitter'
+								placeholder="https://twitter.com/example"
 								ref={methods.register}
 							/>
 						</Form.Group>
@@ -66,6 +70,7 @@ export const EditFormRow4 = ({methods}) => {
 							<Form.Control
 								as='textarea'
 								rows={3}
+								placeholder="Cuentanos mas sobre ti..."
 								name='biography'
 								ref={methods.register}
 							/>
