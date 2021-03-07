@@ -1,15 +1,15 @@
 import React from 'react'
-import google_icon from "../../assets/images/google_icon.png";
-import facebook_icon from "../../assets/images/facebook_icon.png";
+
 import { Form, Col, Row, Button, FormCheck } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
-import { useForm } from "react-hook-form";
+
 import { useAuth } from "../../contexts/AuthContext";
 import { useStorage } from "../../contexts/StorageContext";
 
+import { ThirdPartyLogin } from "../auth/ThirdPartyLogin";
 
-export const RegisterForm = () => {
-    const methods = useForm({mode:'onChange'});
+
+export const RegisterForm = ({methods}) => {
     const history = useHistory()
     const {addUsername} = useStorage()
     const { signUp } = useAuth()
@@ -18,15 +18,19 @@ export const RegisterForm = () => {
         const {email, password, username} = data
       try {
          signUp(email, password).then( async (userInfo)=> {
-             
                 await userInfo.user.updateProfile({displayName: username})
 
              addUsername(userInfo.user.uid, username).then(()=> history.push('/'))
-            .catch((error)=>console.log(error)) 
+            .catch((error)=>{
+               console.log(error);
+            }) 
          })
-         .catch(
-                (err) => console.log(err)
-             );
+         .catch((error) => {
+                     if(error.message === "The email address is already in use by another account.")
+                    methods.setError("registerForm", {message:"Este Email ya esta asociado a una cuenta."})
+
+                    setTimeout(()=> methods.clearErrors(),3500)
+                });
       } catch (error) {
           console.log(error)
       }
@@ -111,10 +115,7 @@ export const RegisterForm = () => {
                     <Button className="login_button  ml-3" type="submit" disabled={methods.formState.isSubmitting} >Registrar</Button>
                 </div>
             </Form>
-          <div className="login_with_container border-top pt-3 mb-2">
-            <img src={facebook_icon} alt="LogIn With Fb" />
-            <img src={google_icon} alt="LogIn with Gmail" />
-          </div>  
+          <ThirdPartyLogin />  
         </>
     )
 }

@@ -1,5 +1,6 @@
-import React from 'react'
-import { Row, Col, Button, Form, Image } from "react-bootstrap";
+import React, {useState} from 'react'
+import { Row, Col, Button, Form, Image, Alert } from "react-bootstrap";
+import { ConfirmModal } from "../Forms/ModalSuccesMessage";
 import reset_pass from "../../assets/images/reset_pass.png";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -7,19 +8,27 @@ import { useAuth  } from "../../contexts/AuthContext";
 
 export const ForgottenPass = () => {
     const methods = useForm({mode:'onChange'});
-    const { resetPass } = useAuth()
+	const [toggleModal, setToggleModal] = useState(false)
+    const { resetPassword } = useAuth()
 
     const onSubmit = async (data) => {
       try {
-        await resetPass(data.email)
-        console.log('Funciona')
+        await resetPassword(data.email)
+        setToggleModal(true)
       } catch (error) {
-        console.log(error)
+        if(error.message === "There is no user record corresponding to this identifier. The user may have been deleted.")
+        methods.setError("forgotPass", {message:"No existe cuenta asociada a este email"})
       }
+      setTimeout(() => methods.clearErrors(), 3000);
     } 
 
     return (
     <>
+    <ConfirmModal toggleModal={toggleModal} 
+    modalMessage="Por favor revise su correo y siga los pasos para cambiar su contraseña"
+    settoggleModal={()=>{setToggleModal(val => !val)}}
+    />
+    {methods.errors.forgotPass && <Alert variant="danger" className="text-center text_label">{methods.errors.forgotPass.message}</Alert>}
       <Row>
         <Col md="6" className="d-flex responsiveLogin">
           <div className="text-center pt-3 pb-5 pr-3">

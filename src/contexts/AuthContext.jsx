@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { auth, createCredential } from "../firebase";
+import { auth, createCredential, googleProvider, facebookProvider} from "../firebase";
 
 const AuthContext = React.createContext()
 
@@ -15,6 +15,17 @@ export const AuthContextProvider = ( {children} ) => {
         return await auth.signInWithEmailAndPassword(email, password);
     }
 
+    const signInWithProvider = async (providerType) => {
+        switch (providerType) {
+            case "google":
+                return await auth.signInWithPopup(googleProvider);
+            case "facebook":
+                return await auth.signInWithPopup(facebookProvider);
+            default:
+                return "Error: no provider detected"
+        }
+    }
+
     const signUp = async (email, password) =>{
         return await auth.createUserWithEmailAndPassword(email, password);
     }
@@ -23,8 +34,8 @@ export const AuthContextProvider = ( {children} ) => {
         return auth.signOut()
     }
 
-    const resetPassword = (email) => {
-        return auth.sendPasswordResetEmail(email)
+    const resetPassword = async (email) => {
+        return await auth.sendPasswordResetEmail(email)
     }
 
     const reAuth = async (password) =>{
@@ -32,22 +43,29 @@ export const AuthContextProvider = ( {children} ) => {
         return await currentUser.reauthenticateWithCredential(credential)
     }
 
+    const signInMethod = async (user) =>{
+       return await auth.fetchSignInMethodsForEmail(user);
+       
+    }
+
     useEffect(() => {
-        const unsuscribe = auth.onAuthStateChanged( user => {
+        const unsuscribe = auth.onAuthStateChanged(async user => {
             SetCurrentUser(user)
             setLoading(false)
-            
-        })
+        }) 
         return unsuscribe
     }, [])
     
     const value = {
         currentUser,
+        signInWithProvider,
         signUp,
         logOut,
         logIn,
         reAuth,
-        resetPassword
+        resetPassword,
+        googleProvider,
+        signInMethod
     }
 
     return (

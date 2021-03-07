@@ -2,7 +2,7 @@ import React from 'react'
 import { Col, Form } from 'react-bootstrap';
 
 
-export const EditFormRow1 = ({methods, username, email}) => {
+export const EditFormRow1 = ({methods, username, email, thirdParty}) => {
     return (
         <Form.Row>
             {/* ---------------USUARIO---------------- */}
@@ -22,7 +22,7 @@ export const EditFormRow1 = ({methods, username, email}) => {
                 </Form.Group>
             </Col>
             {/* -----------------------CORREO------------------------ */}
-            <Col>
+            {!thirdParty && <Col>
                 <Form.Group className='inputWithIcon'>
                     <Form.Label className='text_label'>
                         Correo:
@@ -42,7 +42,7 @@ export const EditFormRow1 = ({methods, username, email}) => {
                     />
                     {methods.errors.email && <li className="text-danger">{methods.errors.email.message}</li>}
                 </Form.Group>
-            </Col>
+            </Col>}
         </Form.Row>
     )
 }

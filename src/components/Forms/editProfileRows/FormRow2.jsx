@@ -38,10 +38,9 @@ export const EditFormRow2 = ({methods}) => {
 							<Form.Control
 								type='date'
 								name='birthday'
-								ref={methods.register({validae: ()=> {
-									if(methods.getValues("birthday") === "") return "Complete este campo"
-									else return true
-								}})}
+								ref={methods.register({
+									required: "Complete este campo."
+								})}
 							/>
 							{methods.errors.birthday && <li className="text-danger">{methods.errors.birthday.message}</li>}
 						</Form.Group>

@@ -11,6 +11,8 @@ const app = firebase.initializeApp({
   appId: process.env.REACT_APP_TEAM_APP_ID
 });
 
+export const googleProvider = new firebase.auth.GoogleAuthProvider;
+export const facebookProvider = new firebase.auth.FacebookAuthProvider;
 export const createCredential =  firebase.auth.EmailAuthProvider.credential;
 export const auth = app.auth()
 export default app

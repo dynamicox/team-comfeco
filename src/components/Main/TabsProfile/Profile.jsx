@@ -16,9 +16,11 @@ export const Profile = () => {
   useEffect(async () => {
     const doc = await getProfileInfo(currentUser.uid)
 
-    const { field, biography, username } = doc.data()
-    setProfile(val => ({username, field, biography}) )
-    console.log(doc.data())
+    if(doc.exist){
+      const { field, biography, username } = doc.data()
+      setProfile(val => ({username, field, biography}) )
+      //console.log(doc.data())
+    }
 
 
   }, [])
@@ -30,7 +32,7 @@ export const Profile = () => {
               {/* ------------PROFILE CARD------------- */}
             <Col lg={3} md={12}>
               <section id="profile" >
-                <ProfileCard username={profile.username} field={profile.field} biography={profile.biography}  />
+                <ProfileCard username={currentUser.displayName} field={profile.field} biography={profile.biography}  />
               </section>
             </Col>
                {/* ------------INSIGNIAS-------------- */}

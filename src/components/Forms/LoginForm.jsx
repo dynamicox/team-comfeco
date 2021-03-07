@@ -1,28 +1,52 @@
-import React from "react";
-import google_icon from "../../assets/images/google_icon.png";
-import facebook_icon from "../../assets/images/facebook_icon.png";
+import React, { useEffect } from "react";
+
 import { Form, Col, Row, Button, FormCheck } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import { useAuth } from "../../contexts/AuthContext";
 
+import { ThirdPartyLogin } from "../auth/ThirdPartyLogin";
 
-export const LoginForm = () => {
-  const methods = useForm({ mode: "onChange" });
+
+export const LoginForm = ({methods}) => {
+  
   const history = useHistory()
   const { logIn } = useAuth()
 
+
   const onSubmit = async (data) => {
-    const {email, password} = data
-    
-    try {
+    const {email, password, remember_me} = data
+      
+     try {
       await logIn(email, password)
-      console.log("Funciona");
+
+      if(remember_me){
+        window.localStorage.setItem("email", email);
+        window.localStorage.setItem("pass", password);
+        window.localStorage.setItem("checked", remember_me);
+      }else window.localStorage.removeItem("checked")
+
       history.push('/')
     } catch (error) {
       console.log(error)
-    }
+      if(error.message === "There is no user record corresponding to this identifier. The user may have been deleted.")
+        methods.setError("login",{ message: "No existe ninguna cuenta asiciada a este Email."})
+      
+      if(error.message === "The password is invalid or the user does not have a password.")
+        methods.setError("login",{ message: "Contraseña o Proveedor (Google, FB) Incorrecto, Trate una vez mas..."})
+      
+
+      setTimeout(() => methods.clearErrors(), 3500);
+    } 
   };
+
+  useEffect(()=>{
+      if(window.localStorage.getItem('checked') === 'true'){
+        methods.setValue("email", window.localStorage.getItem('email'))
+        methods.setValue("password", window.localStorage.getItem('pass'))
+        methods.setValue("remember_me", window.localStorage.getItem('checked'))
+      }
+
+  }, [])
 
   return (
     <div>
@@ -78,8 +102,9 @@ export const LoginForm = () => {
               <p className="text_label">¿Olvidaste tu contraseña?</p>
             </Link>
           </Col>
+          {/* ----------REMEMBER ME---------- */}
           <Col xs="4" md="5" lg="4">
-            <FormCheck className="text_label" label="Recuerdame" />
+            <FormCheck className="text_label" name="remember_me" label="Recuerdame" ref={methods.register} />
           </Col>
         </Row>
         <div className="text-center mt-5 mb-2">
@@ -91,10 +116,7 @@ export const LoginForm = () => {
           </Button>
         </div>
       </Form>
-      <div className="login_with_container border-top pt-4 mb-3">
-        <img src={facebook_icon} alt="LogIn With Fb" />
-        <img src={google_icon} alt="LogIn with Gmail" />
-      </div>
+      <ThirdPartyLogin />
     </div>
   );
 };

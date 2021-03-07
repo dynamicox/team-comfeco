@@ -35,7 +35,7 @@ export const ProfileCard = ({username, field, biography}) => {
                       >
                         <p className={"nick m-0"}>{username}</p>
                         <br />
-                        <p className={"job"}> {field} </p>
+                        <p className={"job"}> {field || ""} </p>
                       </Col>
                       <Col xs={12}>
                         <p className={"experiencia m-0"}>
