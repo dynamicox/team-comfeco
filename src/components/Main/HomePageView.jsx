@@ -18,7 +18,7 @@ export const HomePageView = () => {
 			<Navigation />
 			<Container fluid={true}>
 				<Row noGutters={true}>
-					<Col md='2'>
+					<Col xl='2'>
 						<div className='mt-5'>
 							<div>
 								<h4>Comunidades</h4>
@@ -40,7 +40,7 @@ export const HomePageView = () => {
 							</span>
 						</div>
 					</Col>
-					<Col>
+					<Col xs={{ order: 'first' }} xl={{ order: 0 }}>
 						<h1 className='text_label text-center pt-4 font-weight-bold'>
 							Bienvenidos a Comunity Fest and Code!
 						</h1>
@@ -97,12 +97,16 @@ export const HomePageView = () => {
 						<h3 className='text_label py-3 text-center font-weight-bold'>
 							Preparate lo bueno esta por venir:
 						</h3>
+						<Counter />
 					</Col>
-					<Col md='2' className='w-100'>
+					<Col xl='2' className='w-100'>
 						<div className='mt-5'>
 							<div>
 								<div>
 									<h4>Talleres</h4>
+									<div className='today_label'>
+										Hoy
+									</div>
 								</div>
 								<Workshop
 									name='State of Javascript'
@@ -121,7 +125,6 @@ export const HomePageView = () => {
 						</div>
 					</Col>
 				</Row>
-				<Counter />
 			</Container>
 			<Footer />
 		</>

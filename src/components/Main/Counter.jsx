@@ -39,20 +39,20 @@ export const Counter = () => {
 			style={{ backgroundColor: '#020024', fontFamily: 'Roboto Mono' }}
 		>
 			<Col>
-				<p className='display-4 font-weight-bold'>{day_rest}</p>
-				<br /> <span style={{ fontSize: '1.4em' }}>Dias</span>
+				<p className='h2 font-weight-bold'>{day_rest}</p>
+				<br /> <span style={{ fontSize: '1em' }}>Dias</span>
 			</Col>
 			<Col>
-				<p className='display-4 font-weight-bold'>{hours_rest}</p>
-				<br /> <span style={{ fontSize: '1.4em' }}>Horas</span>
+				<p className='h2 font-weight-bold'>{hours_rest}</p>
+				<br /> <span style={{ fontSize: '1em' }}>Horas</span>
 			</Col>
 			<Col>
-				<p className='display-4 font-weight-bold'>{minutes_rest}</p>
-				<br /> <span style={{ fontSize: '1.4em' }}>Minutos</span>
+				<p className='h2 font-weight-bold'>{minutes_rest}</p>
+				<br /> <span style={{ fontSize: '1em' }}>Minutos</span>
 			</Col>
 			<Col>
-				<p className='display-4 font-weight-bold'>{secunds_rest}</p>
-				<br /> <span style={{ fontSize: '1.4em' }}>Segundos</span>
+				<p className='h2 font-weight-bold'>{secunds_rest}</p>
+				<br /> <span style={{ fontSize: '1em' }}>Segundos</span>
 			</Col>
 		</Row>
 	);

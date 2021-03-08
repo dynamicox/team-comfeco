@@ -5,10 +5,13 @@ export const CommunityBadge = (props) => {
 	return (
 		<>
 			<Row className='CommunityBadge flex pt-1 pb-1 mb-3'>
-				<Col className='CommunityBadge__img col-3 text-center align-self-center BadgeSideLeft'>
+				<Col
+					xl={3}
+					className='CommunityBadge__img  text-center align-self-center BadgeSideLeft'
+				>
 					<Image width={60} height={60} src={props.url} roundedCircle />
 				</Col>
-				<Col className=' d-flex flex-column col-9'>
+				<Col xl={9} className='d-flex flex-column'>
 					<p className='CommunityBadge__title fs-1 fw-bold text-center'>
 						{props.name}
 					</p>
