@@ -4,10 +4,10 @@ import { ProfileCard } from "./ProfileCard";
 import { Insignias } from "./Insignias";
 import { RecentActivity } from "./RecentActivity";
 import { Eventos } from "./Eventos";
-import { useAuth } from "../../../contexts/AuthContext";
-import { useStorage } from "../../../contexts/StorageContext";
+import { useAuth } from "../../../../contexts/AuthContext";
+import { useStorage } from "../../../../contexts/StorageContext";
 
-export const Profile = () => {
+export const MainProfile = () => {
   const {currentUser} = useAuth()
   const { getProfileInfo } = useStorage()
   const [profile, setProfile] = useState({username: "", field: "", biography: ""});
@@ -27,7 +27,7 @@ export const Profile = () => {
 
   return (
     <>
-      <Container fluid="lg" >
+      <Container fluid >
         <Row style={{minHeight: "100vh"}} >
               {/* ------------PROFILE CARD------------- */}
             <Col lg={3} md={12}>

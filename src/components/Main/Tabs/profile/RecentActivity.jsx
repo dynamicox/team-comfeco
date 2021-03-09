@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card } from "react-bootstrap";
-import { RecentSVG } from "../../../assets/images/RecentASVG";
+import { RecentSVG } from "../../../../assets/images/RecentASVG";
 
 
 export const RecentActivity = () => {

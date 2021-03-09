@@ -1,8 +1,8 @@
 import React from 'react';
-import { Col, Container, Row, Image, Form, Button } from 'react-bootstrap';
+import { Col, Container, Row, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { EditProfileForm } from '../../Forms/EditProfileForm';
+import { EditProfileForm } from '../../../Forms/EditProfileForm';
 
 export const EditProfile = () => {
 	const methods = useForm({ mode: 'onChange' });
