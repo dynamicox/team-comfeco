@@ -4,12 +4,12 @@ import { EventCard } from "./EventCard";
 import { useStorage } from "../../../../contexts/StorageContext";
 
 export const MainEvents = () => {
-    const { getAllEvents } = useStorage()
+    const { getCollection } = useStorage()
     const [events, setEvents] = useState([])
 
     useEffect(async ()=>{
         try {
-             const { docs } = await getAllEvents()
+             const { docs } = await getCollection("events")
              let data= []
 
              docs.forEach(element => {

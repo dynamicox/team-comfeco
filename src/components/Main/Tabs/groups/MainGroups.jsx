@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Row, Col, Form } from 'react-bootstrap';
 import { CardsContainer } from "./CardsContainer";
-import { MyGroupsCard } from './MyGroupsCard'
+import { MyGroupsCard } from './MyGroupsCard';
+import { useStorage } from "../../../../contexts/StorageContext";
 
 export const MainGroups = () => {
+    const { getCollection } = useStorage()
+    const [allGroups, setAllGroups] = useState([])
+    const [topicsArray, setTopicsArray] = useState([])
+
+    useEffect(async () => {
+        getCollection('groups').then((query)=>{
+           // console.log(query)
+            query.forEach((doc)=>{
+                setAllGroups(val => [...val, doc.data()])
+                setTopicsArray( val => [...val, doc.data().topic])
+            })
+        })
+    }, [])
     
     return (
         <div style={{minHeight: "100vh"}}>
@@ -18,13 +32,13 @@ export const MainGroups = () => {
                             <Col xs="3">
                                 <Form.Group className="mt-2" >
                                     <Form.Control as="select" >
-                                        <option>Option</option>
-                                        <option>Option</option>
-                                        <option>Option</option>
-                                        <option>Option</option>
-                                        <option>Option</option>
-                                        <option>Option</option>
-                                        <option>Option</option>
+                                        <option>Select an option</option>
+                                        {topicsArray.length <= 0 ? <option>No hay</option> : 
+                                                topicsArray.map((topic)=> {
+                                                    console.log(topic)
+                                                    return <option>{topic}</option>
+                                                })
+                                                }
                                     </Form.Control>
                                 </Form.Group>
                             </Col>
@@ -35,7 +49,8 @@ export const MainGroups = () => {
                             </Col>
                         </Form.Row>
                     </Form>
-                    <CardsContainer />
+                    <CardsContainer allGroups={allGroups} />
+
                 </Col>
             </Row>
         </div>

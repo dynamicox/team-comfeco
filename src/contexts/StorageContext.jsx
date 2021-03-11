@@ -33,14 +33,14 @@ export const StorageContextProvider = ( {children} ) => {
         return app.firestore().collection(collectionName).doc(docId).get()
     }
     
-    const getAllEvents = async () => {
-        return eventsRef.get()
+    const getCollection = async (collectionName) => {
+        return app.firestore().collection(collectionName).get()
     }
     const value={
         addUsername,
         editProfile,
         getProfileInfo,
-        getAllEvents,
+        getCollection,
         getOneDocument
     }
 
