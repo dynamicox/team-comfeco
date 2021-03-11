@@ -14,21 +14,19 @@ export const MainProfile = () => {
   
 
   useEffect(async () => {
-    const doc = await getProfileInfo(currentUser.uid)
+    const profile = await getProfileInfo(currentUser.uid)
 
-    if(doc.exist){
-      const { field, biography, username } = doc.data()
-      setProfile(val => ({username, field, biography}) )
-      //console.log(doc.data())
+    if(profile.exists){      
+      const { field, biography, username} = profile.data()
+      setProfile({username, field, biography})
     }
-
 
   }, [])
 
   return (
     <>
-      <Container fluid >
-        <Row style={{minHeight: "100vh"}} >
+      <Container fluid style={{minHeight: "100vh"}} >
+        <Row  >
               {/* ------------PROFILE CARD------------- */}
             <Col lg={3} md={12}>
               <section id="profile" >
@@ -45,7 +43,7 @@ export const MainProfile = () => {
                {/* ------------EVENTOS-------------- */}
             <Col lg={3} md={12}>
               <section id="eventos" >
-                <Eventos />
+                <Eventos currentUser={currentUser} />
               </section>
             </Col>
       </Row>
