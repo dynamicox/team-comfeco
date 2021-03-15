@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import app  from "../firebase";
+import app, { FieldValue }  from "../firebase";
 
 const StorageContext = React.createContext()
 
@@ -8,12 +8,25 @@ export const useStorage = () => {
 }
 export const StorageContextProvider = ( {children} ) => {
     const userRef = app.firestore().collection('users')
-    const eventsRef = app.firestore().collection('events')
+    const groupsRef = app.firestore().collection('groups')
 
-    const addUsername = async (userID, username) => {
-        return await userRef.doc(userID).set({
-            username
-        })
+    const createProfile = async (userID, username) => {
+        const profileObj = {
+                username,
+                country: '',
+				field:'',
+				gender: '',
+				link_github:'', 
+				link_facebook:'', 
+				link_linkedin:'', 
+				link_twitter:'',
+				birthday:'', 
+				biography:'',
+                group: '',
+                events: [],
+                badges: []
+        }
+        return await userRef.doc(userID).set(profileObj)
     }
     
     const getProfileInfo = async (userID) => {
@@ -21,12 +34,7 @@ export const StorageContextProvider = ( {children} ) => {
     }
 
     const editProfile = async (userID, profileInfoObj) => {
-        const doc = await getProfileInfo(userID)
-       if(doc.exists){
            return await userRef.doc(userID).update(profileInfoObj)
-       }else{
-           return await userRef.doc(userID).set(profileInfoObj)
-       }
     }
 
     const getOneDocument = async (collectionName, docId) => {
@@ -36,12 +44,49 @@ export const StorageContextProvider = ( {children} ) => {
     const getCollection = async (collectionName) => {
         return app.firestore().collection(collectionName).get()
     }
+
+    const getFilteredDocuments = async (collectionName, coditionsArray) => {
+        const field = coditionsArray[0]
+        const condition = coditionsArray[1]
+        const value = coditionsArray[2]
+
+        return app.firestore().collection(collectionName).where(field, condition, value).get()
+    }
+
+    const joinGroup = async (groupId,userId, role) => {
+        try {
+            userRef.doc(userId).update({
+                group: groupId
+            })
+            return await groupsRef.doc(groupId).update({
+            groupUsers: FieldValue.arrayUnion({user: userId, role})
+        })
+        } catch (error) {
+          console.log(error)  
+        }
+    }
+    const leaveGroup = async (groupId, userToRemoveObj) => {
+        try {
+            userRef.doc(userToRemoveObj.user).update({
+                group: ''
+            })
+            return await groupsRef.doc(groupId).update({
+            groupUsers: FieldValue.arrayRemove(userToRemoveObj)
+        })
+        } catch (error) {
+          console.log(error.message)  
+        }
+    }
+
     const value={
-        addUsername,
+        createProfile,
         editProfile,
         getProfileInfo,
         getCollection,
-        getOneDocument
+        getOneDocument,
+        getFilteredDocuments,
+        joinGroup,
+        leaveGroup
     }
 
     return (

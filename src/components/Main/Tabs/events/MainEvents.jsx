@@ -7,19 +7,22 @@ export const MainEvents = () => {
     const { getCollection } = useStorage()
     const [events, setEvents] = useState([])
 
-    useEffect(async ()=>{
-        try {
-             const { docs } = await getCollection("events")
-             let data= []
+    useEffect( ()=>{
+        async function getData() {
+            try {
+                const { docs } = await getCollection("events")
+                let data= []
 
-             docs.forEach(element => {
-                 data.push({eventId: element.id, eventData: element.data()})
-             })
+                docs.forEach(element => {
+                    data.push({eventId: element.id, eventData: element.data()})
+                })
              setEvents(data)
              
             } catch (error) {
-                
+                alert(error.message)
             }
+        }
+        getData()
     }, [])
     
     return (

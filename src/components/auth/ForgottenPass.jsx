@@ -8,7 +8,7 @@ import { useAuth  } from "../../contexts/AuthContext";
 
 export const ForgottenPass = () => {
     const methods = useForm({mode:'onChange'});
-	const [toggleModal, setToggleModal] = useState(false)
+	  const [toggleModal, setToggleModal] = useState(false)
     const { resetPassword } = useAuth()
 
     const onSubmit = async (data) => {

@@ -11,7 +11,7 @@ import { ThirdPartyLogin } from "../auth/ThirdPartyLogin";
 
 export const RegisterForm = ({methods}) => {
     const history = useHistory()
-    const {addUsername} = useStorage()
+    const {createProfile} = useStorage()
     const { signUp } = useAuth()
 
     const onSubmit = async (data) => {
@@ -20,7 +20,7 @@ export const RegisterForm = ({methods}) => {
          signUp(email, password).then( async (userInfo)=> {
                 await userInfo.user.updateProfile({displayName: username})
 
-             addUsername(userInfo.user.uid, username).then(()=> history.push('/'))
+             createProfile(userInfo.user.uid, username).then(()=> history.push('/'))
             .catch((error)=>{
                console.log(error);
             }) 

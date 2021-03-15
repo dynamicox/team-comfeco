@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image } from "react-bootstrap";
 
-export const GroupMember = () => {
+export const GroupMember = ({username, role, field}) => {
     return (
         <div className="d-flex my-3 pb-2 border-bottom">
             <Image
@@ -11,10 +11,10 @@ export const GroupMember = () => {
             style={{backgroundColor:"grey"}}
             />
             <div className="ml-1 mr-auto">
-                <h6>Member Name</h6>
-                <p className="text-muted">something</p>
+                <h6>{username ||"Member Name"}</h6>
+                <p className="text-muted">{field || "Programmer"}</p>
             </div>
-                <p className="text-muted mt-auto">integrante</p>
+                <p className="text-muted mt-auto">{role || "Integrante"}</p>
         </div>
     )
 }
