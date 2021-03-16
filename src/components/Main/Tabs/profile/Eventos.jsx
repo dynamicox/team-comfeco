@@ -10,7 +10,6 @@ export const Eventos = ({currentUser}) => {
   useEffect(async () => {
     async function getData() {
       const profile = await getProfileInfo(currentUser.uid)
-
     profile.data().events.forEach(element => {
       getOneDocument('events', element).then((data)=>{
         const {name, eventImgUrl} = data.data()
@@ -32,7 +31,7 @@ export const Eventos = ({currentUser}) => {
                    Ver mas...
                   </Link>
                 </div> 
-                {userEvents.length <= 0 ? <h1>Actualmente no esta suscrito a ningun evento</h1> : 
+                {userEvents.length <= 0 ? <h4>Actualmente no esta suscrito a ningun evento</h4> : 
                   userEvents.map((element, id)=>{
                     return <ProfileEventCard key={id} eventTitle={element.name} eventImgUrl={element.eventImgUrl} />
                   })

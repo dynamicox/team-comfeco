@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Button, Card } from 'react-bootstrap'
 import { Link } from "react-router-dom";
 import { ConfirmModal } from "../../../Forms/ModalSuccesMessage";
@@ -10,6 +10,7 @@ export const MyGroupsCard = ({userGroup, userId, setUserGroup}) => {
     const { getOneDocument, leaveGroup, getProfileInfo } = useStorage()
     const [groupInfo, setGroupInfo] = useState()
     const [membersInfo, setMembersInfo] = useState([])
+    const _isMounted = useRef(true);
 
     async function exitGroup() {
         let userToRemove ;
@@ -18,9 +19,12 @@ export const MyGroupsCard = ({userGroup, userId, setUserGroup}) => {
         })
        try {
         await leaveGroup(userGroup, userToRemove)
-        setGroupInfo()
-        setUserGroup()
-        setToggleModal(false)
+        if(_isMounted){
+            setGroupInfo()
+            setUserGroup()
+            setToggleModal(false)
+        }
+      
        } catch (error) {
            alert(error.message)
        }
@@ -30,13 +34,13 @@ export const MyGroupsCard = ({userGroup, userId, setUserGroup}) => {
     useEffect(()=>{
        async function getData() {
            if(userGroup){
-            setMembersInfo([])
+            _isMounted && setMembersInfo([])
             const group = await getOneDocument("groups", userGroup)
-            setGroupInfo(group.data())
+            _isMounted && setGroupInfo(group.data())
 
             group.data().groupUsers.map(async (doc)=>{
                 const member = await getProfileInfo(doc.user)
-                setMembersInfo(val => [...val, 
+                _isMounted && setMembersInfo(val => [...val, 
                     {username: member.data().username,
                      role: doc.role,
                      field: member.data().field
@@ -45,7 +49,14 @@ export const MyGroupsCard = ({userGroup, userId, setUserGroup}) => {
         }
        }
        getData()
+       ;
     }, [userGroup])
+    
+    useEffect(()=>{
+        return () => {
+            _isMounted.current = false;
+        }
+    },[])
 
     return (
         <Card style={{backgroundColor:"#f3f3f3"}}>

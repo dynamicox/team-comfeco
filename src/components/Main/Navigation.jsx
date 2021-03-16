@@ -5,7 +5,7 @@ import logo from '../../assets/images/logoConf.png';
 import {Link} from "react-router-dom";
 
 export const Navigation = () => {
-	const { logOut } = useAuth();
+	const { logOut,currentUser } = useAuth();
 
 	return (
 		<Navbar
@@ -45,12 +45,21 @@ export const Navigation = () => {
 					</Nav.Link>
 				</Nav>
 				<Nav>
+					<Navbar.Text  className='mx-1 mt-2' style={{ fontFamily: 'Roboto Mono', fontWeight: 'bold',color: "#f9b14a"  }}>
+						{currentUser.displayName}
+					</Navbar.Text>
 					<NavDropdown
 						className='mr-3 pr-5 text-center'
-						title={<i className=' text-light fas fa-user-circle fa-2x ' />}
+						title={<img src="https://i.pinimg.com/736x/dc/ab/b7/dcabb7fbb2f763d680d20a3d228cc6f9.jpg" 
+						width="50"
+						height="50"
+						style={{borderRadius:"50%"}}
+						className="d-inline-block align-top"/>}
 						id='collasible-nav-dropdown'
 					>
-							<NavDropdown.Item>
+						 
+
+						<NavDropdown.Item>
 						<	Link to="/sub/profile">
 								Profile 
 							</Link>

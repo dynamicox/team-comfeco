@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { ProfileCard } from "./ProfileCard";
 import { Insignias } from "./Insignias";
@@ -11,6 +11,7 @@ export const MainProfile = () => {
   const {currentUser} = useAuth()
   const { getProfileInfo } = useStorage()
   const [profile, setProfile] = useState({username: "", field: "", biography: ""});
+  const _isMounted = useRef(true);
   
 
   useEffect(async () => {
@@ -18,8 +19,11 @@ export const MainProfile = () => {
 
     if(profile.exists){      
       const { field, biography, username} = profile.data()
-      setProfile({username, field, biography})
+      _isMounted && setProfile({username, field, biography})
     }
+    return () => {
+			_isMounted.current = false;
+		};
 
   }, [])
 

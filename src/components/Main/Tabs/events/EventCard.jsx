@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useStorage } from "../../../../contexts/StorageContext";
 import { useAuth } from "../../../../contexts/AuthContext";
 
-export const EventCard = ({imgUrl, eventDescription, eventId}) => {
+export const EventCard = ({imgUrl, eventDescription, eventId,eventTitle}) => {
     const {editProfile, getProfileInfo} = useStorage()
     const [enrolled, setEnrolled] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -66,6 +66,7 @@ export const EventCard = ({imgUrl, eventDescription, eventId}) => {
                 height="220"
                 />
                 <Card.Body>
+                    <h3> {eventTitle || "Title Event Confe"}</h3>
                     <p>{eventDescription || "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eos explicabo veniam molestiae, sunt mollitia aspernatur"}</p>
 
                     <div className="d-flex justify-content-between  mt-4">

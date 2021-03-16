@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import { CardsContainer } from "./CardsContainer";
 import { MyGroupsCard } from './MyGroupsCard';
@@ -13,6 +13,7 @@ export const MainGroups = () => {
     const [allGroups, setAllGroups] = useState([])
     const [userGroup, setUserGroup] = useState()
     const [topicsArray, setTopicsArray] = useState([])
+    const _isMounted = useRef(true);
 
     async function onSubmit(data) {
         setAllGroups([])
@@ -31,7 +32,10 @@ export const MainGroups = () => {
                     const {groupInfo} = doc 
 
                     if(groupInfo.groupName.match(searchRegex) || groupInfo.description.match(searchRegex)){
-                        setAllGroups(val => [...val, doc])
+                        
+                        if (_isMounted.current) {
+                            setAllGroups(val => [...val, doc])
+                        }
                     }
                 })
         } catch (error) {
@@ -61,10 +65,10 @@ export const MainGroups = () => {
         async function fetchData() {     
             try {
                 const profile = await getProfileInfo(currentUser.uid)
-                setUserGroup(profile.data().group);
 
+                _isMounted.current && setUserGroup(profile.data().group);
                 const grupos = await getAllGroups()
-                    setAllGroups(grupos)
+                _isMounted.current &&  setAllGroups(grupos)
                     grupos.forEach(doc=> setTopicsArray(val => {
                         if(!val.includes(doc.groupInfo.topic)){
                             return [...val, doc.groupInfo.topic]
@@ -75,13 +79,17 @@ export const MainGroups = () => {
             }
         }
 
-            fetchData()
+    fetchData()
+
+    return () => {
+        _isMounted.current = false;
+    };
 
     }, [])
     
     return (
         <div style={{minHeight: "100vh"}}>
-            <h1 className="text-center text_label my-5">Grupos</h1>
+            <h1 className="text-center text_label my-5 font-weight-bold">Grupos</h1>
             <Row noGutters>
                 <Col xl="3" md="4"  className="px-3">
                     <MyGroupsCard userGroup={userGroup} userId={currentUser.uid} setUserGroup={setUserGroup}/>
