@@ -72,8 +72,15 @@ export const EditFormRow4 = ({methods}) => {
 								rows={3}
 								placeholder="Cuentanos mas sobre ti..."
 								name='biography'
-								ref={methods.register}
+								ref={methods.register({
+									required: "Por favor complete este campo",
+									maxLength: {
+										value: 140,
+										message: "El texto de su biografia no puede exceder los 140 caracteres"
+									}
+								})}
 							/>
+							{methods.errors.biography && <li className="text-danger">{methods.errors.biography.message}</li>}
 						</Form.Group>
 					</Col>
 				</Form.Row>

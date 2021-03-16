@@ -5,7 +5,7 @@ import { useStorage } from "../../../../contexts/StorageContext";
 import { useAuth } from "../../../../contexts/AuthContext";
 
 export const EventCard = ({imgUrl, eventDescription, eventId,eventTitle}) => {
-    const {editProfile, getProfileInfo} = useStorage()
+    const {editProfile, getProfileInfo, grantUserABadge} = useStorage()
     const [enrolled, setEnrolled] = useState(false)
     const [loading, setLoading] = useState(false)
     const { currentUser } = useAuth()
@@ -22,6 +22,7 @@ export const EventCard = ({imgUrl, eventDescription, eventId,eventTitle}) => {
             profileObj.events = eventsArray
 
            await editProfile(currentUser.uid, profileObj)
+           grantUserABadge('CVwTCPIWxP23YqToZzr7')
             
         }else{
             profileObj.events = [eventId]
@@ -47,26 +48,29 @@ export const EventCard = ({imgUrl, eventDescription, eventId,eventTitle}) => {
         setLoading(false)
     }
 
-    useEffect(async () =>{
-        const perfil = await getProfileInfo(currentUser.uid)
-        if(perfil.data().events){
-            const eventsArray = perfil.data().events
+    useEffect(() =>{
+        async function getData() {
+            const perfil = await getProfileInfo(currentUser.uid)
+            if(perfil.data().events){
+                const eventsArray = perfil.data().events
             if(eventsArray.includes(eventId)){
                 setEnrolled(true)
             }
+        }
+        getData()
         }
     }, [])
 
     return (
         <>
-        <Col lg="4">
+        <Col lg="4" md="6">
             <Card className="my-5">
                 <Image
                 src={imgUrl || "https://via.placeholder.com/150"}
                 height="220"
                 />
                 <Card.Body>
-                    <h3> {eventTitle || "Title Event Confe"}</h3>
+                    <h3 className="overflow-hidden" style={{height:"40px"}}> {eventTitle || "Title Event Confe"}</h3>
                     <p>{eventDescription || "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eos explicabo veniam molestiae, sunt mollitia aspernatur"}</p>
 
                     <div className="d-flex justify-content-between  mt-4">

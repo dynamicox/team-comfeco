@@ -1,5 +1,6 @@
 import React, {useContext} from 'react'
 import app, { FieldValue }  from "../firebase";
+import { useAuth } from "./AuthContext";
 
 const StorageContext = React.createContext()
 
@@ -7,6 +8,7 @@ export const useStorage = () => {
     return useContext(StorageContext);
 }
 export const StorageContextProvider = ( {children} ) => {
+    const {currentUser} = useAuth()
     const userRef = app.firestore().collection('users')
     const groupsRef = app.firestore().collection('groups')
 
@@ -29,8 +31,8 @@ export const StorageContextProvider = ( {children} ) => {
         return await userRef.doc(userID).set(profileObj)
     }
     
-    const getProfileInfo = async (userID) => {
-        return await userRef.doc(userID).get()
+    const getProfileInfo = async () => {
+        return await userRef.doc(currentUser.uid).get()
     }
 
     const editProfile = async (userID, profileInfoObj) => {
@@ -78,6 +80,12 @@ export const StorageContextProvider = ( {children} ) => {
         }
     }
 
+    const grantUserABadge = async (badgeId) => {
+            return await userRef.doc(currentUser.uid).update({
+            badges: FieldValue.arrayUnion(badgeId)
+        })
+    }
+
     const value={
         createProfile,
         editProfile,
@@ -86,7 +94,8 @@ export const StorageContextProvider = ( {children} ) => {
         getOneDocument,
         getFilteredDocuments,
         joinGroup,
-        leaveGroup
+        leaveGroup,
+        grantUserABadge
     }
 
     return (

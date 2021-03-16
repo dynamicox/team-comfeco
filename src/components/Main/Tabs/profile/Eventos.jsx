@@ -3,23 +3,21 @@ import { Link } from "react-router-dom";
 import { ProfileEventCard } from "../events/ProfileEventCard";
 import { useStorage } from "../../../../contexts/StorageContext";
 
-export const Eventos = ({currentUser}) => {
+export const Eventos = () => {
   const { getOneDocument, getProfileInfo } = useStorage()    
   const [userEvents, setUserEvents] = useState([])
 
-  useEffect(async () => {
+  useEffect(() => {
     async function getData() {
-      const profile = await getProfileInfo(currentUser.uid)
-    profile.data().events.forEach(element => {
-      getOneDocument('events', element).then((data)=>{
-        const {name, eventImgUrl} = data.data()
-        setUserEvents(val => [...val, {name, eventImgUrl}])
+        const profile = await getProfileInfo()
+          profile.data().events.forEach(element => {
+            getOneDocument('events', element).then((data)=>{
+            const {name, eventImgUrl} = data.data()
+          setUserEvents(val => [...val, {name, eventImgUrl}])
+        })
       })
-    })
-  }
+    }
     getData()
-    
-  
   }, [])
 
     return (

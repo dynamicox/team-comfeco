@@ -6,11 +6,11 @@ export const Layout = ( { children } ) => {
 
     return (
         <>
-        <StorageContextProvider>
             <AuthContextProvider>
+                <StorageContextProvider>
                     { children }
+                </StorageContextProvider>
             </AuthContextProvider>
-        </StorageContextProvider>
         </>
     )
 }

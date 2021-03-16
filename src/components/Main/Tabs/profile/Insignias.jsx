@@ -1,67 +1,41 @@
-import React from 'react'
-import { Col, Image, Row } from "react-bootstrap";
+import React, { useEffect, useState } from 'react'
+import { Image } from "react-bootstrap";
+import { useStorage } from "../../../../contexts/StorageContext";
 
-import medalla1 from "../../../../assets/medallas/medalla1.png"
-import medalla2 from "../../../../assets/medallas/medalla2.png"
-import medalla3 from "../../../../assets/medallas/medalla3.png"
-import medalla4 from "../../../../assets/medallas/medalla4.png"
+export const Insignias = ({userBadges}) => {
+  const {getCollection} = useStorage()
+  const [badgesImg, setBadgesImg] = useState([])
 
-export const Insignia =({image,status})=>{
-  const lockedBadge={
-    "-webkit-filter":" grayscale(100%)",
-    "filter": "grayscale(100%)",
-    "objectFit":"cover"
-  }
-  const Badge={
-    "objectFit":"cover"
-  }
+  useEffect(()=>{
+    async function getData() {
+      const badgesCollection = await getCollection('badges')
+      let data = []
+        badgesCollection.forEach(doc => {
+          if(userBadges.includes(doc.id)){
+            data.push(doc.data().imgUrl)
+          }else{
+            data.push("https://images.pexels.com/photos/356079/pexels-photo-356079.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+          }
+          
+        })
+        setBadgesImg(data)
 
+    }
+     getData()
+  },[userBadges])
 
-  return(
-    <Col
-    xl={3}
-    lg={3}
-    md={3}
-    sm={3}
-    xs={3}
-    className={"p-0"}
-  >
-    <Image
-      width={"65px"}
-      height={"65px"}
-      roundedCircle
-      src={image}
-      style={status ? Badge : lockedBadge}
-    />
-  </Col>
-  )
-}
-
-export const Insignias = () => {
     return (
         <>
-            <div className={"py-3"}>
-                  <Row className={"bg-content-insignias py-2 rounded"}>
-                    <Col
-                      xl={4}
-                      lg={4}
-                      md={12}
-                      sm={12}
-                      xs={12}
-                      className={"text-center"}
-                    >
-                      <p className={"m-0 text-white"}>Insignias</p>
-                    </Col>
-                    <Col xl={8} lg={8} md={12} sm={12} xs={12}>
-                      <Row>
-                        <Insignia image={medalla1} status={true}/>
-                        <Insignia image={medalla2} status={false}/>
-                        <Insignia image={medalla3} status={false}/>
-                        <Insignia image={medalla4} status={false}/>
-                      </Row>
-                    </Col>
-                  </Row>                  
-                </div>
+        <div className="d-flex w-100 bg-content-insignias py-2 px-3 rounded mt-3 text_label">
+              Insignias
+            <div className="d-flex justify-content-around w-75">
+                {badgesImg && 
+                  badgesImg.map( (element, idx) => {
+                    return <Image className="mx-3 bg-light" key={idx} src={element || '' } roundedCircle height={"65px"} width="65px"/>
+                  })
+                }
+            </div>
+        </div>
         </>
     )
 }

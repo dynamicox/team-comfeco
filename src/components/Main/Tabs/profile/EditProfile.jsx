@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form';
 import { EditProfileForm } from '../../../Forms/EditProfileForm';
 
 export const EditProfile = () => {
-	const methods = useForm({ mode: 'onChange' });
 
 	const previewPhoto = () => {
 		const newImage = document.querySelector('#imgupload').files[0];

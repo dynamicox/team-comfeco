@@ -36,8 +36,8 @@ export const MainEvents = () => {
              <Row className="mb-5">
                 { events.length > 0 ?
                     events.map((element)=>{
-                        const {eventImgUrl, description} = element.eventData
-                        return <EventCard eventId={element.eventId} key={element.eventId} imgUrl={eventImgUrl} eventDescription={description} />
+                        const {eventImgUrl, description, name} = element.eventData
+                        return <EventCard eventTitle={name} eventId={element.eventId} key={element.eventId} imgUrl={eventImgUrl} eventDescription={description} />
                     }) : <h3 className="text_label pt-5">No hay eventos disponibles, Regrese mas tarde...</h3>
                 }
              </Row>

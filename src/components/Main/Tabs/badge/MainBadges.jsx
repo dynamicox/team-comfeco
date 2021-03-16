@@ -1,28 +1,50 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, Row } from 'react-bootstrap'
 import { BadgeCard } from './BadgeCard'
+import { useStorage } from "../../../../contexts/StorageContext";
 
-//Medallas
-import medalla1 from "../../../../assets/medallas/medalla1.png"
-import medalla2 from "../../../../assets/medallas/medalla2.png"
-import medalla3 from "../../../../assets/medallas/medalla3.png"
-import medalla4 from "../../../../assets/medallas/medalla4.png"
 
 export const MainBadges = () => {
+    const [badges, setBadges] = useState([])
+    const { getCollection, getProfileInfo, grantUserABadge } = useStorage()
+
+    useEffect(()=>{
+        async function getData() {
+            const badgeColletion = await getCollection('badges')
+            const profile = await getProfileInfo()
+            const {badges} = profile.data()
+
+            let badgeArray= []
+            badgeColletion.forEach((doc)=>{
+                let badgeObj = {status: false, badgeInfo: doc.data()}
+                if(badges.includes(doc.id)) badgeObj.status = true
+                badgeArray.push(badgeObj)
+            })
+            if(badges.length === badgeColletion.docs.length - 1){
+                grantUserABadge('l15t2i97uk9QNxL1AK0D')
+            }
+            setBadges(badgeArray)
+        }
+        getData()
+    }, [])
+
     return (
         <Container style={{minHeight: "100vh"}} fluid >
             <h1 className="text-center text_label  mt-3 font-weight-bold">Insignias</h1>
             <Row className="px-3">
-                <BadgeCard
-                badgeName="Sociable"
-                howToGet="Complete los datos de su perfil para obtener esta insignia."
-                badgeImgUrl={medalla1}
-                badgeDescription={"Muestra tus conocimientos a los demás con tu nuevo perfil."}
-                status={true}
-                />
-                <BadgeCard badgeImgUrl={medalla2} badgeName="Idol" status={false}/>
-                <BadgeCard badgeImgUrl={medalla3}  badgeName="Hero" status={false}/>
-                <BadgeCard badgeImgUrl={medalla4}  badgeName="Master" status={false}/>
+
+                {badges && 
+                    badges.map((element, idx)=>{
+                        const {imgUrl, name, instructions, description} = element.badgeInfo
+
+                        return <BadgeCard key={idx}
+                                    status={element.status}
+                                    badgeImgUrl={imgUrl} 
+                                    badgeName={name} 
+                                    badgeDescription={description} 
+                                    howToGet={instructions} />
+                    })
+                }
             </Row>
         </Container>
     )

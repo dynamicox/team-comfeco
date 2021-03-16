@@ -64,7 +64,7 @@ export const MainGroups = () => {
     useEffect(() => {
         async function fetchData() {     
             try {
-                const profile = await getProfileInfo(currentUser.uid)
+                const profile = await getProfileInfo()
 
                 _isMounted.current && setUserGroup(profile.data().group);
                 const grupos = await getAllGroups()

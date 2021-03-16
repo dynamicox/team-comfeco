@@ -2,10 +2,10 @@ import { Layout } from './components/Layout';
 import { Switch, Route } from 'react-router-dom';
 import { AuthViewComponent } from './components/auth/AuthViewComponent';
 import { PrivateRoute, AuthRoute } from './components/PrivateRoute';
-import { HomePageView } from './components/Main/HomePageView';
+import { HomePageView } from './components/main/HomePageView';
 import { Error404 } from './components/Errors/Error404';
 import './styles/index.scss';
-import { SubTabs } from './components/Main/SubTabs';
+import { SubTabs } from './components/main/SubTabs';
 
 function App() {
 	return (

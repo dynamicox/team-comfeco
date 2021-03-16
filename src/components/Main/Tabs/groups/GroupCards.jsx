@@ -7,7 +7,6 @@ export const GroupCards = (props) => {
 	const [labelColor, setLabelColor] = useState('dark')
 
     function setLabel() {
-
         switch (props.groupTopic.toLowerCase()) {
             case 'react':
                 setLabelColor('info')
@@ -19,9 +18,7 @@ export const GroupCards = (props) => {
                 setLabelColor('success')
              return   
             default:
-            
         }
-        
     }
     
     useEffect(()=>{

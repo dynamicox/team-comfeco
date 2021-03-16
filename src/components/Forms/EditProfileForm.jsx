@@ -13,9 +13,10 @@ import { useForm } from 'react-hook-form';
 
 
 export const EditProfileForm = () => {
-	const {editProfile, getProfileInfo} = useStorage()
+	const {editProfile, getProfileInfo, grantUserABadge} = useStorage()
 	const {currentUser, reAuth, signInMethod} = useAuth()
 	const [toggleModal, setToggleModal] = useState(false)
+	const [haveBadge, setHaveBadge] = useState(true)
 	const [thirdPartyProvider, setThirdPartyProvider] = useState(true)
 
 	const methods = useForm({ mode: 'onChange' });
@@ -23,8 +24,9 @@ export const EditProfileForm = () => {
 	async function updateProfile(userProfile) {
 		// -------------- UPDATE PROFILE INFO ----------
 			try {
+				if(!haveBadge) await grantUserABadge('Fttujg57ZdfRiQOzrinO')
 				await editProfile(currentUser.uid, userProfile)
-				setToggleModal(val => !val)
+					setToggleModal(val => !val)
 			} catch (error) {
 				console.log(error)
 			}
@@ -35,7 +37,7 @@ export const EditProfileForm = () => {
 						displayName: userProfile.username
 					})
 				} catch (error) {
-					//methods.setError()
+					alert(error.message)
 				}
 			}
 	}
@@ -43,9 +45,7 @@ export const EditProfileForm = () => {
     const onSubmit = async (data) => {			
 		const {	email, username, country, field, gender, new_password,
 				link_github, link_facebook, link_linkedin, link_twitter,
-				birthday, biography, current_password } = data
-
-					console.log(birthday)
+				birthday, biography, current_password, badges } = data
 			const userProfile = {
 				username,
 				country,
@@ -94,23 +94,27 @@ export const EditProfileForm = () => {
 			}
     }	
 
-	useEffect(async () => {
-		const m = await signInMethod(currentUser.email)
-		if(m[0] === 'password'){
-			setThirdPartyProvider(false)
-		}
-		const doc = await getProfileInfo(currentUser.uid)
-		
-		if(doc.exists){
+	useEffect( () => {
+		async function getData() {
+				const method = await signInMethod(currentUser.email)
+				if(method[0] === 'password'){
+					setThirdPartyProvider(false)
+				}
+			const doc = await getProfileInfo()
+			if(doc.exists){
+				const { gender, birthday, field, country, biography, badges } = doc.data()
 
-			const { gender, birthday, field, country, biography } = doc.data()
-			methods.setValue('gender', gender || "")
-			methods.setValue('username', currentUser.displayName)
-			methods.setValue('birthday', birthday)
-			methods.setValue('field', field)
-			methods.setValue('country', country)
-			methods.setValue('biography', biography)
+				if(!badges.includes("Fttujg57ZdfRiQOzrinO")) setHaveBadge(false)
+
+				methods.setValue('gender', gender || "")
+				methods.setValue('username', currentUser.displayName)
+				methods.setValue('birthday', birthday)
+				methods.setValue('field', field)
+				methods.setValue('country', country)
+				methods.setValue('biography', biography)
+			}
 		}
+		getData()
 	}, [])
 
 	return (

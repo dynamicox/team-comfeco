@@ -1,14 +1,15 @@
 import React from 'react'
-import { Button, Container, Row } from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap'
 import { GroupCards } from "./GroupCards";
 import { useStorage } from "../../../../contexts/StorageContext";
 import { useAuth } from "../../../../contexts/AuthContext";
 
 export const CardsContainer = ({allGroups, userGroup, setUserGroup}) => {
-    const { joinGroup } = useStorage()
+    const { joinGroup, grantUserABadge } = useStorage()
     const { currentUser } = useAuth()
 
     function addUserToGroup(groupId) {
+        grantUserABadge('BevZlLSHjWeFg5Z6EiUC');
         joinGroup(groupId, currentUser.uid, "Integrante");
     }
 

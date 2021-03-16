@@ -11,20 +11,25 @@ export const MainProfile = () => {
   const {currentUser} = useAuth()
   const { getProfileInfo } = useStorage()
   const [profile, setProfile] = useState({username: "", field: "", biography: ""});
+  const [userBadges, setUserBadges] = useState([]);
   const _isMounted = useRef(true);
   
 
-  useEffect(async () => {
-    const profile = await getProfileInfo(currentUser.uid)
+  useEffect(() => {
+    async function getData() {
+      const profile = await getProfileInfo()
 
-    if(profile.exists){      
-      const { field, biography, username} = profile.data()
-      _isMounted && setProfile({username, field, biography})
+      if(profile.exists){      
+        const { field, biography, username, badges} = profile.data()
+        _isMounted && setUserBadges(badges)
+        _isMounted && setProfile({username, field, biography})
+      }
     }
+    getData()
+
     return () => {
 			_isMounted.current = false;
 		};
-
   }, [])
 
   return (
@@ -40,14 +45,16 @@ export const MainProfile = () => {
                {/* ------------INSIGNIAS-------------- */}
             <Col lg={6} md={12} >
               <section id="insiginias" style={{minHeight: "60vh"}}>
-                <Insignias />
-                <RecentActivity />
+                <Insignias userBadges={userBadges}/>
+                <div>
+                  <RecentActivity />
+                </div>
               </section>
             </Col>
                {/* ------------EVENTOS-------------- */}
             <Col lg={3} md={12}>
               <section id="eventos" >
-                <Eventos currentUser={currentUser} />
+                <Eventos />
               </section>
             </Col>
       </Row>

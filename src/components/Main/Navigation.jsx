@@ -2,10 +2,11 @@ import React from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { useAuth } from '../../contexts/AuthContext';
 import logo from '../../assets/images/logoConf.png';
-import {Link} from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 export const Navigation = () => {
 	const { logOut,currentUser } = useAuth();
+	const history = useHistory()
 
 	return (
 		<Navbar
@@ -59,14 +60,14 @@ export const Navigation = () => {
 					>
 						 
 
-						<NavDropdown.Item>
-						<	Link to="/sub/profile">
-								Profile 
-							</Link>
-							</NavDropdown.Item>
-						<NavDropdown.Item href='#action/3.2'>Another</NavDropdown.Item>
-						<NavDropdown.Item href='#action/3.3'>
-							Something
+						<NavDropdown.Item onClick={()=>{history.push('/sub/profile')}}>
+							Profile 
+						</NavDropdown.Item>
+						<NavDropdown.Item onClick={()=>{history.push('/sub/events')}}>
+							Eventos
+						</NavDropdown.Item>
+						<NavDropdown.Item onClick={()=>{history.push('/sub/groups')}}>
+							Grupos
 						</NavDropdown.Item>
 						<NavDropdown.Divider />
 						<NavDropdown.Item onClick={logOut}>Log out</NavDropdown.Item>
