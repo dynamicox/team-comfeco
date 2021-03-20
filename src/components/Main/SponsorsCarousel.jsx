@@ -47,6 +47,7 @@ export const SponsorsCarousel = ({swiperData}) => {
 
                                return <SwiperSlide key={idx} className="sponsorAnima">
                                 <Image
+                                    title={element.name}
                                     className="shadow"
 									src={element.imgUrl}
 									roundedCircle

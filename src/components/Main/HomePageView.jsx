@@ -4,6 +4,7 @@ import { Navigation } from './Navigation';
 import { Footer } from './Footer';
 import {  CommunityBadge } from "./CommunityBadge";
 import 'swiper/swiper.scss';
+import { LoadingSpiner } from "../LoadingSpiner";
 import { Counter } from './Counter';
 import { useStorage } from "../../contexts/StorageContext";
 import { LeadersCarousel } from './LeadersCarousel';
@@ -16,7 +17,7 @@ export const HomePageView = () => {
   	const [key, setKey] = useState('comunidades');
 	const [sponsorSwipper, setSponsorSwipper] = useState()
 	const [leaderSwipper, setLeaderSwipper] = useState()
-	const { getCollection, getDataFromCollection } = useStorage()
+	const { getCollection, getDataFromCollection, loading, setLoading } = useStorage()
 
 
 	
@@ -24,11 +25,13 @@ export const HomePageView = () => {
 	useEffect(()=>{
 		async function getData() {
 			try {
+				setLoading(true)
 				const leadersData = await getCollection('leaders')
 				const sponsorsData = await getCollection('sponsors')		
 
 				setLeaderSwipper(getDataFromCollection(leadersData))
 				setSponsorSwipper(getDataFromCollection(sponsorsData))
+				setLoading(false)
 			} catch (error) {
 				
 			}
@@ -44,7 +47,7 @@ export const HomePageView = () => {
 					{/* WELCOME SECTION */}
 					<Col xs="12" className="homePageImg d-flex align-items-center justify-content-center text-light">
 						<div>
-							<h1 className='text_label text-center pt-4 font-weight-bold linkHover'>
+							<h1 className='text_label text-center pt-4 font-weight-bold linkHover' style={{cursor:'default'}}>
 								Bienvenidos a Comunity Fest and Code!
 							</h1>
 							<div className="text-center">
@@ -55,8 +58,9 @@ export const HomePageView = () => {
 						</div>
 					</Col>
 						{/* ABOUT  */}
-						<Col className="px-4 py-5" lg="7">
-							<h3 className='text_label my-5 text-center font-weight-bold'>
+						<Col className="px-4 py-5 d-flex justify-content-center">
+							<div style={{maxWidth:"700px"}}>
+								<h3 className='text_label my-5 text-center font-weight-bold'>
 								Sobre el evento
 							</h3>
 							<p className=" text_label text-justify">
@@ -69,17 +73,26 @@ export const HomePageView = () => {
 								encuentre, todo con un mismo proposito, aprender en
 								comunidad.
 							</p>
+							</div>
 						</Col>
-						<Col lg="5">
-						</Col>
-						{/* RULES */}
-						<Col lg="5">
-						</Col>
-						<Col className="py-5" lg="7">
-							<h3 className='text_label my-5 text-center font-weight-bold'>
+						
+						{/* TEAM LEADERS */}
+					<Col xs='12' style={{backgroundColor:"#F0F0F0"}}>
+						<h3 className='text_label pt-5 text-center font-weight-bold'>
+							Ellos ya creen en esta iniciativa:
+						</h3>
+						{ loading ?
+							<LoadingSpiner />
+							:
+						leaderSwipper && <LeadersCarousel swiperData={leaderSwipper} />}
+					</Col>
+					{/* RULES */}
+						<Col className="pb-5 d-flex justify-content-center" xs='12' >
+							<div>
+								<h3 className='text_label my-5 text-center font-weight-bold'>
 								Reglas
 							</h3>
-							<div className="text_label text-justify px-3">
+							<div className="text_label px-4 pb-3" style={{maxWidth:"700px"}}>
 								<p className="py-2">
 									<i className="fas fa-check text-success mr-3"/>
 									Los grupos tienen que ser conformados por 5 personas.
@@ -101,14 +114,8 @@ export const HomePageView = () => {
 									Los lideres de cada team no realizaran el proyecto por ti, solo estarán como guía para dar algunos talleres y resolver dudas para poder completar con éxito el proyecto.
 								</p>
 							</div>
+							</div>
 						</Col>
-						{/* TEAM LEADERS */}
-					<Col>
-						<h3 className='text_label pt-5 text-center font-weight-'>
-							Ellos ya creen en esta iniciativa:
-						</h3>
-						{leaderSwipper && <LeadersCarousel swiperData={leaderSwipper} />}
-					</Col>
 					</Row>
 					<Row noGutters className="justify-content-center" style={{backgroundColor:"#f3f3f3"}}>
 					<Col lg='6' md='8' xs='11'>
@@ -137,7 +144,10 @@ export const HomePageView = () => {
 						
 						{/* SPONSORS */}
 						<h2 className='text_label pt-5 text-center '>Sponsors</h2>
-						{sponsorSwipper && <SponsorsCarousel swiperData={sponsorSwipper} />}
+						{	loading ?
+						<LoadingSpiner />
+							:
+						sponsorSwipper && <SponsorsCarousel swiperData={sponsorSwipper} />}
 						<Button className='BtnApoyar mb-5 mt-2'>Apoyar Iniciativa</Button>
 						
 					</Col>

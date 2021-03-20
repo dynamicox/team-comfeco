@@ -34,7 +34,7 @@ export const Workshops = (props) => {
                 </div>
 				<div className=" ">
 					<p className="text_label text-justify text-muted my-2 mt-5">
-					Aprende muchas cosas junto a nuestros expertos.
+					Aprende y refina tus conocimientos junto a nuestros expertos.
 					<a className="text-right"> Ver mas...</a>
 					</p>
 				</div>

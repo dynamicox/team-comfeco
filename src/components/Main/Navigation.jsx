@@ -10,17 +10,18 @@ export const Navigation = () => {
 
 	return (
 		<Navbar
+			sticky='top'
 			variant='dark'
-			className='px-5 my-0'
+			className='px-5 my-0 shadow'
 			expand='lg'
 			style={{ padding: '0px', backgroundColor: '#020024' }}
 		>
 				<Navbar.Brand className='' onClick={()=>{history.push('/')}} href="" style={{cursor:'pointer'}}>
 					<img
 						src={logo}
-						width='55'
-						height='55'
-						className='d-inline-block align-top'
+						width='50'
+						height='50'
+						className='d-inline-block align-top ml-2'
 						alt='React Bootstrap logo'
 					/>
 				</Navbar.Brand>
@@ -33,13 +34,13 @@ export const Navigation = () => {
 					<Nav.Link onClick={()=> history.push('/')} className='mx-1 linkHover' style={{ color: '#ffff' }}>
 						Inicio
 					</Nav.Link>
-					<Nav.Link href='#pricing' className='mx-1 linkHover' style={{ color: '#ffff' }}>
+					<Nav.Link  className='mx-1 linkHover' style={{ color: '#ffff' }}>
 						Comunidades
 					</Nav.Link>
-					<Nav.Link href='#pricing' className='mx-1 linkHover' style={{ color: '#ffff' }}>
+					<Nav.Link  className='mx-1 linkHover' style={{ color: '#ffff' }}>
 						Talleres
 					</Nav.Link>
-					<Nav.Link href='#pricing' className='mx-1 linkHover' style={{ color: '#ffff' }}>
+					<Nav.Link  disabled className='mx-1 linkHover'>
 						Creadores de Contenido
 					</Nav.Link>
 				</Nav>

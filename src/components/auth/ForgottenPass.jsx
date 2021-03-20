@@ -58,10 +58,12 @@ export const ForgottenPass = () => {
               />
               {methods.errors.email && <li className="text_label text-danger"> {methods.errors.email.message} </li>}
             </Form.Group>
-                <Link to="/auth/login" >
-                  <Button className="alt_button">Inicia sesion</Button>
-                </Link>
-              <Button className="login_button ml-3" type='submit' >Enviar</Button>
+              <div className="d-flex justify-content-between">
+                  <Link to="/auth/login" >
+                    <Button className="alt_button">Inicia sesion</Button>
+                  </Link>
+                <Button className="login_button " type='submit' >Enviar</Button>
+              </div>
           </Form>
         </Col>
       </Row>
