@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import { ProfileEventCard } from "../events/ProfileEventCard";
 import { useStorage } from "../../../../contexts/StorageContext";
+import { LoadingSpiner } from "../../../LoadingSpiner";
 
 export const Eventos = () => {
-  const { getOneDocument, getProfileInfo } = useStorage()    
+  const { getOneDocument, getProfileInfo, loading } = useStorage()    
   const [userEvents, setUserEvents] = useState([])
 
   useEffect(() => {
@@ -29,7 +30,8 @@ export const Eventos = () => {
                    Ver mas...
                   </Link>
                 </div> 
-                {userEvents.length <= 0 ? <h4>Actualmente no esta suscrito a ningun evento</h4> : 
+                {loading ? <LoadingSpiner />
+                  :                userEvents.length <= 0 ? <h4>Actualmente no esta suscrito a ningun evento</h4> : 
                   userEvents.map((element, id)=>{
                     return <ProfileEventCard key={id} eventTitle={element.name} eventImgUrl={element.eventImgUrl} />
                   })

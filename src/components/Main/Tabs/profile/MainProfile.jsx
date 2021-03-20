@@ -7,9 +7,9 @@ import { Eventos } from "./Eventos";
 import { useAuth } from "../../../../contexts/AuthContext";
 import { useStorage } from "../../../../contexts/StorageContext";
 
-export const MainProfile = () => {
+export const MainProfile = ({setKey}) => {
   const {currentUser} = useAuth()
-  const { getProfileInfo } = useStorage()
+  const { getProfileInfo, setLoading } = useStorage()
   const [profile, setProfile] = useState({username: "", field: "", biography: ""});
   const [userBadges, setUserBadges] = useState([]);
   const _isMounted = useRef(true);
@@ -17,6 +17,7 @@ export const MainProfile = () => {
 
   useEffect(() => {
     async function getData() {
+      setLoading(true)
       const profile = await getProfileInfo()
 
       if(profile.exists){      
@@ -24,12 +25,10 @@ export const MainProfile = () => {
         _isMounted && setUserBadges(badges)
         _isMounted && setProfile({username, field, biography})
       }
+      setLoading(false)
     }
     getData()
 
-    return () => {
-			_isMounted.current = false;
-		};
   }, [])
 
   return (
@@ -37,13 +36,15 @@ export const MainProfile = () => {
       <Container fluid style={{minHeight: "100vh"}} >
         <Row  >
               {/* ------------PROFILE CARD------------- */}
-            <Col lg={3} md={12}>
+            <Col lg={{span: 3, order:1}} md={{span: 6, order:1}} xs={{span: 12, order:1}}>
               <section id="profile" >
-                <ProfileCard username={currentUser.displayName} field={profile.field} biography={profile.biography}  />
+                <ProfileCard username={currentUser.displayName} field={profile.field} biography={profile.biography}  
+                  setKey={setKey}
+                />
               </section>
             </Col>
                {/* ------------INSIGNIAS-------------- */}
-            <Col lg={6} md={12} >
+            <Col lg={{span: 6, order:2}} md={{span: 12, order:3}} xs={{span: 12, order:3}} >
               <section id="insiginias" style={{minHeight: "60vh"}}>
                 <Insignias userBadges={userBadges}/>
                 <div>
@@ -52,7 +53,7 @@ export const MainProfile = () => {
               </section>
             </Col>
                {/* ------------EVENTOS-------------- */}
-            <Col lg={3} md={12}>
+            <Col lg={{span: 3, order:3}} md={{span: 6, order:2}} xs={{span: 12, order:2}} >
               <section id="eventos" >
                 <Eventos />
               </section>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { EditProfileForm } from '../../../Forms/EditProfileForm';
 
-export const EditProfile = () => {
+export const EditProfile = ({setKey}) => {
 
 	const previewPhoto = () => {
 		const newImage = document.querySelector('#imgupload').files[0];
@@ -22,7 +22,7 @@ export const EditProfile = () => {
 	return (
 		<Container fluid style={{ minHeight: '100vh' }}>
 			<Row className="border-bottom py-3 px-5">
-					<Link to='/sub/profile'>
+					<Link to='/sub/profile' onClick={()=>setKey('profile')}>
 						<i className='fas fa-arrow-left' style={{ fontSize: '25px' }}></i>
 					</Link>
 				<Col className='text-edit text-center'>

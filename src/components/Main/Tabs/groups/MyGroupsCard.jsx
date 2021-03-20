@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 import { ConfirmModal } from "../../../Forms/ModalSuccesMessage";
 import { GroupMember } from "./GroupMember";
 import { useStorage } from "../../../../contexts/StorageContext";
+import { LoadingSpiner } from "../../../LoadingSpiner";
+
 
 export const MyGroupsCard = ({userGroup, userId, setUserGroup}) => {
 	const [toggleModal, setToggleModal] = useState(false)
-    const { getOneDocument, leaveGroup, getProfileInfo } = useStorage()
+    const [loading, setLoading] = useState(true)
+    const { getOneDocument, leaveGroup, getProfileInfo} = useStorage()
     const [groupInfo, setGroupInfo] = useState()
     const [membersInfo, setMembersInfo] = useState([])
     const _isMounted = useRef(true);
@@ -33,20 +36,26 @@ export const MyGroupsCard = ({userGroup, userId, setUserGroup}) => {
 
     useEffect(()=>{
        async function getData() {
-           if(userGroup){
-            _isMounted && setMembersInfo([])
-            const group = await getOneDocument("groups", userGroup)
-            _isMounted && setGroupInfo(group.data())
+           try {
+               setLoading(true)
+                if(userGroup){
+                    _isMounted && setMembersInfo([])
+                    const group = await getOneDocument("groups", userGroup)
+                    _isMounted && setGroupInfo(group.data())
 
-            group.data().groupUsers.map(async (doc)=>{
-                const member = await getProfileInfo(doc.user)
-                _isMounted && setMembersInfo(val => [...val, 
-                    {username: member.data().username,
-                     role: doc.role,
-                     field: member.data().field
-                    }])
-            })
-        }
+                    group.data().groupUsers.map(async (doc)=>{
+                        const member = await getProfileInfo(doc.user)
+                        _isMounted && setMembersInfo(val => [...val, 
+                            {username: member.data().username,
+                            role: doc.role,
+                            field: member.data().field
+                            }])
+                    })
+                }
+                setLoading(false)
+           } catch (error) {
+               
+           }
        }
        getData()
        ;
@@ -61,7 +70,10 @@ export const MyGroupsCard = ({userGroup, userId, setUserGroup}) => {
     return (
         <Card style={{backgroundColor:"#f3f3f3"}}>
             <Card.Body className="px-3 py-3" >
-            {userGroup ?  
+            {loading ?
+                <LoadingSpiner />
+                :
+            userGroup ?  
                 groupInfo && <div>
                     <div className="d-flex justify-content-between align-items-center">
                         <span className="mr-auto">{"Mi Grup"}o</span>
@@ -96,6 +108,8 @@ export const MyGroupsCard = ({userGroup, userId, setUserGroup}) => {
                 </div>
             }
                 <ConfirmModal
+                    modalTitle="Espere"
+                    ModalIcon="fas fa-exclamation-triangle text-danger"
                     toggleModal={toggleModal} 
                     modalMessage="¿Esta seguro que quiere abandonar este grupo?"
                     settoggleModal={()=>{setToggleModal(val => !val)}}

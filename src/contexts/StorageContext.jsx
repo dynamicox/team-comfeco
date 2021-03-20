@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import app, { FieldValue }  from "../firebase";
 import { useAuth } from "./AuthContext";
 
@@ -9,6 +9,7 @@ export const useStorage = () => {
 }
 export const StorageContextProvider = ( {children} ) => {
     const {currentUser} = useAuth()
+    const [loading, setLoading] = useState(false)
     const userRef = app.firestore().collection('users')
     const groupsRef = app.firestore().collection('groups')
 
@@ -26,7 +27,8 @@ export const StorageContextProvider = ( {children} ) => {
 				biography:'',
                 group: '',
                 events: [],
-                badges: []
+                badges: [],
+                recentActivity: []
         }
         return await userRef.doc(userID).set(profileObj)
     }
@@ -86,6 +88,14 @@ export const StorageContextProvider = ( {children} ) => {
         })
     }
 
+    function getDataFromCollection(collectionQuery) {
+		let collectionData = []
+		collectionQuery.forEach((doc)=>{
+			collectionData.push(doc.data())
+		})
+		return collectionData
+	}
+
     const value={
         createProfile,
         editProfile,
@@ -95,7 +105,11 @@ export const StorageContextProvider = ( {children} ) => {
         getFilteredDocuments,
         joinGroup,
         leaveGroup,
-        grantUserABadge
+        grantUserABadge,
+        getDataFromCollection,
+        loading,
+        setLoading,
+        FieldValue
     }
 
     return (

@@ -11,7 +11,7 @@ const lockedBadge={
 export const BadgeCard = ({badgeName, badgeDescription, badgeImgUrl, howToGet ,status}) => {
     return (
         <>
-            <Col lg="3" md="6" xs={status && {order:'first'}}>
+            <Col lg="3" md="6" xs={status && {span:12, order:'first'}}>
                     <Card className={`text-center d-flex align-items-center pt-4 my-5 ${status && "shadow"}`}>
                         <Image 
                             height="170"

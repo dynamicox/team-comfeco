@@ -2,12 +2,12 @@ import React from 'react'
 import {  Button, Modal } from 'react-bootstrap';
 
 
-export const ConfirmModal = ({settoggleModal, toggleModal, modalMessage, onConfirm, modalTitle}) => {
+export const ConfirmModal = ({settoggleModal, toggleModal, modalMessage, onConfirm, modalTitle, ModalIcon}) => {
     return (
         <>
             <Modal centered show={toggleModal} onHide={settoggleModal} >
 					<Modal.Header closeButton>
-						<i className="fas fa-check fa-lg pt-2 mr-2 text-success"/>
+                        <i className={` ${ModalIcon || "fas fa-check text-success"} fa-lg pt-2 mr-2 `}/>
 						<h5 className="text_label pt-1">{modalTitle || 'Completado.'}</h5>
 					</Modal.Header>
 					<Modal.Body className="d-flex text-center">

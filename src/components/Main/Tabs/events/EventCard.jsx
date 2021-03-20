@@ -3,62 +3,56 @@ import { Card, Col, Image, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useStorage } from "../../../../contexts/StorageContext";
 import { useAuth } from "../../../../contexts/AuthContext";
+import { ConfirmModal } from "../../../Forms/ModalSuccesMessage";
+
 
 export const EventCard = ({imgUrl, eventDescription, eventId,eventTitle}) => {
-    const {editProfile, getProfileInfo, grantUserABadge} = useStorage()
+	const [toggleModal, setToggleModal] = useState(false)
+    const {editProfile, getProfileInfo, grantUserABadge, FieldValue} = useStorage()
     const [enrolled, setEnrolled] = useState(false)
     const [loading, setLoading] = useState(false)
     const { currentUser } = useAuth()
 
     const addEventToProfile = async () => {
-        const perfil = await getProfileInfo(currentUser.uid)
-        let profileObj = {events: []}
-        
-        setLoading(true)
-
-        if(perfil.data().events){
-            const eventsArray = perfil.data().events
-            eventsArray.push(eventId)
-            profileObj.events = eventsArray
-
-           await editProfile(currentUser.uid, profileObj)
-           grantUserABadge('CVwTCPIWxP23YqToZzr7')
-            
-        }else{
-            profileObj.events = [eventId]
-           await editProfile(currentUser.uid, profileObj)
+        try {
+            setLoading(true)
+            await editProfile(currentUser.uid, {events: FieldValue.arrayUnion(eventId)})
+            grantUserABadge('CVwTCPIWxP23YqToZzr7')
+                
+            setEnrolled(true)
+            setLoading(false)
+        } catch (error) {
+            console.log(error.message)
         }
-        setEnrolled(true)
-        setLoading(false)
     }
+
     const removeEvent = async () => {
-        const perfil = await getProfileInfo(currentUser.uid)
-        const eventsArray = perfil.data().events
+        try {
+            setLoading(true)
 
-        setLoading(true)
-
-
-        const filteredEvents = eventsArray.filter((ids)=>{
-            if(ids === eventId) return false
-            else return true
-        })
-
-        await editProfile(currentUser.uid, {events: filteredEvents})
-        setEnrolled(false)
-        setLoading(false)
+            await editProfile(currentUser.uid, {events: FieldValue.arrayRemove(eventId)})
+            setEnrolled(false)
+            setLoading(false)
+        } catch (error) {
+            alert(error.message)
+        }
     }
 
     useEffect(() =>{
         async function getData() {
-            const perfil = await getProfileInfo(currentUser.uid)
-            if(perfil.data().events){
-                const eventsArray = perfil.data().events
-            if(eventsArray.includes(eventId)){
-                setEnrolled(true)
-            }
+           try {
+                const perfil = await getProfileInfo(currentUser.uid)
+                    if(perfil.data().events) {
+                        const eventsArray = perfil.data().events
+                    if(eventsArray.includes(eventId)){
+                        setEnrolled(true)
+                        }
+                    }
+           } catch (error) {
+               console.log(error.message)
+           }
         }
         getData()
-        }
     }, [])
 
     return (
@@ -83,7 +77,7 @@ export const EventCard = ({imgUrl, eventDescription, eventId,eventTitle}) => {
                             Participar
                         </Button>
                                 :
-                        <Button  className="alt_button w-50" onClick={removeEvent} disabled={loading} >
+                        <Button  className="alt_button w-50" onClick={()=>setToggleModal(true)} disabled={loading} >
                             Abandonar
                         </Button>
                         }
@@ -91,6 +85,17 @@ export const EventCard = ({imgUrl, eventDescription, eventId,eventTitle}) => {
                 </Card.Body>
             </Card>
         </Col>    
+               <ConfirmModal
+                    modalTitle="Espere"
+                    ModalIcon="fas fa-exclamation-triangle text-danger"
+                    toggleModal={toggleModal} 
+                    modalMessage="¿Esta seguro que quiere abandonar este evento?"
+                    settoggleModal={()=>{setToggleModal(val => !val)}}
+                    onConfirm={()=> {
+                        removeEvent()
+                        setToggleModal(val => !val)
+                    }}
+                />
         </>
     )
 }

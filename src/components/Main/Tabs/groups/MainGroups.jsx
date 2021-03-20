@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 
 export const MainGroups = () => {
     const methods = useForm({mode:"onChange"})
-    const { getCollection, getFilteredDocuments, getProfileInfo } = useStorage()
+    const { getCollection, getFilteredDocuments, getProfileInfo, setLoading } = useStorage()
     const { currentUser } = useAuth()
     const [allGroups, setAllGroups] = useState([])
     const [userGroup, setUserGroup] = useState()
@@ -30,8 +30,8 @@ export const MainGroups = () => {
 
                 grupos.forEach((doc)=>{
                     const {groupInfo} = doc 
-
-                    if(groupInfo.groupName.match(searchRegex) || groupInfo.description.match(searchRegex)){
+        /* TO SEARCH BY DESCRIPTION TOO, JUST ADD THIS LINE BELOW--> || groupInfo.description.match(searchRegex) */
+                    if(groupInfo.groupName.match(searchRegex) ){
                         
                         if (_isMounted.current) {
                             setAllGroups(val => [...val, doc])
@@ -63,6 +63,7 @@ export const MainGroups = () => {
 
     useEffect(() => {
         async function fetchData() {     
+           if(!allGroups) setLoading(true)
             try {
                 const profile = await getProfileInfo()
 
@@ -77,26 +78,22 @@ export const MainGroups = () => {
             } catch (error) {
                 console.log(error)
             }
+            setLoading(false)
         }
 
     fetchData()
-
-    return () => {
-        _isMounted.current = false;
-    };
-
     }, [])
     
     return (
         <div style={{minHeight: "100vh"}}>
             <h1 className="text-center text_label my-5 font-weight-bold">Grupos</h1>
-            <Row noGutters>
+            <Row noGutters className="px-0">
                 <Col xl="3" md="4"  className="px-3">
                     <MyGroupsCard userGroup={userGroup} userId={currentUser.uid} setUserGroup={setUserGroup}/>
                 </Col>
                 <Col xl="9" md="8">
-                    <Form className="px-3" onSubmit={methods.handleSubmit(onSubmit)}>
-                        <Form.Row >
+                    <Form className="" onSubmit={methods.handleSubmit(onSubmit)}>
+                        <Form.Row className="mx-0">
                             <Col xs="3">
                                 <Form.Group className="mt-2" >
                                     <Form.Control as="select" name="category" ref={methods.register}>
@@ -109,7 +106,7 @@ export const MainGroups = () => {
                                     </Form.Control>
                                 </Form.Group>
                             </Col>
-                            <Col xs="8">
+                            <Col xl="8" xs="7">
                                 <Form.Group className="d-flex">
                                     <Form.Control name="group" ref={methods.register} type="text" />
                                 </Form.Group>

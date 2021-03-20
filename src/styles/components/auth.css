@@ -1,5 +1,50 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;600&display=swap');
 
+.sponsorAnima{
+	transition: transform 1s ease;
+}
+
+.sponsorAnima:hover{
+	transform: translateY(-20px);
+}
+
+.homePageImg{
+	background-image:
+	linear-gradient(0deg, rgba(0,0,0,0.31416316526610644) 53%, rgba(9,8,9,0.1881127450980392) 65%),
+	url('https://res.cloudinary.com/dbbfkyeaj/image/upload/v1616250329/tech%20logos/pexels-photo-4974915_gw16j1.jpg')  ;
+	height: 90vh;
+	object-fit: fill;
+	background-repeat: no-repeat;
+	object-position: center;
+	
+}
+
+.linkHover {
+  color: #fff;
+  text-decoration: none;
+  padding: 7px  !important;
+  display: inline-block;
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.linkHover:after {    
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 1px;
+  left: 50%;
+  position: absolute;
+  background: #fff;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+.linkHover:hover:after { 
+  width: 100%; 
+  left: 0; 
+}
+
 .auth_container {
 	background-image: url('../../assets/images/Vector\ 3.png');
 	min-height: 100vh;

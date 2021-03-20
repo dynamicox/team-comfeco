@@ -2,7 +2,7 @@ import React from 'react'
 import { Col, Image, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const ProfileCard = ({username, field, biography}) => {
+export const ProfileCard = ({username, field, biography, setKey}) => {
     return (
         <>
             <Row className={"d-flex justify-content-center py-3"} >
@@ -25,7 +25,7 @@ export const ProfileCard = ({username, field, biography}) => {
                         />
                       </Col>
                       <div className="posision-edit" >
-                        <Link className="edit" to="update/profile">
+                        <Link className="edit" to="update/profile" onClick={()=>{setKey('editProfile')}}>
                           Editar perfil
                         </Link>
                       </div>
@@ -38,7 +38,7 @@ export const ProfileCard = ({username, field, biography}) => {
                         <p className={"job"}> {field || ""} </p>
                       </Col>
                       <Col xs={12}>
-                        <p className={"experiencia m-0"}>
+                        <p className={"experiencia m-0 text-justify"}>
                           {biography || "Edita tu perfil y cuentanos un poco mas sobre ti"}
                         </p>
                       </Col>

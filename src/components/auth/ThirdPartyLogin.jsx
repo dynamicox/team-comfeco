@@ -9,14 +9,15 @@ export const ThirdPartyLogin = () => {
     const { createProfile, getProfileInfo } = useStorage()
 
     async function profileCreation(credential) {
-        const profile = await getProfileInfo(credential.user.uid)
-        if(!profile.exists){
-          try {
-            createProfile(credential.user.uid,credential.user.displayName);
+      try {
+          const { user } = credential
+          const profile = await getProfileInfo(user.uid)
+            if(!profile.exists){
+            createProfile(user.uid , user.displayName);
+           }
           } catch (error) {
-            alert(error.message)
+            console.log(error.message)
           }
-        }
     }
 
     return (

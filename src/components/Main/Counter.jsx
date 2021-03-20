@@ -34,24 +34,31 @@ export const Counter = () => {
 	}, [day_rest, hours_rest, minutes_rest, secunds_rest, active]);
 	return (
 		<Row
-			className='py-1 px-3 text-center text-light'
-			noGutters={true}
+			className='py-5 px-3 text-center text-light'
+			noGutters
 			style={{ backgroundColor: '#020024', fontFamily: 'Roboto Mono' }}
 		>
-			<Col>
-				<p className='h2 font-weight-bold'>{day_rest}</p>
-				<br /> <span style={{ fontSize: '1em' }}>Dias</span>
+			<Col xs="12">
+				<i className="far fa-calendar-alt fa-10x " />
+				<h3 className='text_label py-3 mb-4 text-center font-weight-bold'>
+							Preparate lo bueno esta por venir:
+				</h3>
 			</Col>
 			<Col>
-				<p className='h2 font-weight-bold'>{hours_rest}</p>
+					<p className='h1 font-weight-bold'>{day_rest}</p>
+					<br /> 
+					<span style={{ fontSize: '1em' }}>Dias</span>
+			</Col>
+			<Col>
+				<p className='h1 font-weight-bold'>{hours_rest}</p>
 				<br /> <span style={{ fontSize: '1em' }}>Horas</span>
 			</Col>
 			<Col>
-				<p className='h2 font-weight-bold'>{minutes_rest}</p>
+				<p className='h1 font-weight-bold'>{minutes_rest}</p>
 				<br /> <span style={{ fontSize: '1em' }}>Minutos</span>
 			</Col>
 			<Col>
-				<p className='h2 font-weight-bold'>{secunds_rest}</p>
+				<p className='h1 font-weight-bold'>{secunds_rest}</p>
 				<br /> <span style={{ fontSize: '1em' }}>Segundos</span>
 			</Col>
 		</Row>

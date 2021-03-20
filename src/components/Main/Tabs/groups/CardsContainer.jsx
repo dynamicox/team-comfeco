@@ -3,9 +3,10 @@ import { Container, Row } from 'react-bootstrap'
 import { GroupCards } from "./GroupCards";
 import { useStorage } from "../../../../contexts/StorageContext";
 import { useAuth } from "../../../../contexts/AuthContext";
+import { LoadingSpiner } from "../../../LoadingSpiner";
 
 export const CardsContainer = ({allGroups, userGroup, setUserGroup}) => {
-    const { joinGroup, grantUserABadge } = useStorage()
+    const { joinGroup, grantUserABadge, loading } = useStorage()
     const { currentUser } = useAuth()
 
     function addUserToGroup(groupId) {
@@ -16,7 +17,10 @@ export const CardsContainer = ({allGroups, userGroup, setUserGroup}) => {
     return (
         <Container>
             <Row lg="10">
-               {allGroups.length > 0 && 
+               {loading ?
+                <LoadingSpiner />
+               :
+               allGroups.length > 0 && 
                allGroups.map((doc, idx)=> 
                     <GroupCards key={idx}
                     groupId={doc.groupId}

@@ -80,7 +80,8 @@ img {
 }
 
 .CardCustom__img {
-	margin-top: -80px;
+	position: relative;
+	bottom: 1em;
 }
 
 .followbadge {
